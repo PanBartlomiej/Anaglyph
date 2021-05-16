@@ -811,10 +811,11 @@
             <object class="wxTimer" expanded="0">
                 <property name="enabled">1</property>
                 <property name="id">wxID_ANY</property>
-                <property name="name">m_timer1</property>
+                <property name="name">sfmlTimer</property>
                 <property name="oneshot">0</property>
                 <property name="period">20</property>
                 <property name="permission">protected</property>
+                <event name="OnTimer">sfmlTimerOnTimer</event>
             </object>
         </object>
     </object>

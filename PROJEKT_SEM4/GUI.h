@@ -47,7 +47,7 @@ class MyFrame1 : public wxFrame
 		wxStaticText* m_staticText4;
 		wxSlider* focus_slider;
 		wxButton* zapisz;
-		wxTimer m_timer1;
+		wxTimer sfmlTimer;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void wczytajOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
@@ -56,6 +56,7 @@ class MyFrame1 : public wxFrame
 		virtual void obrot_z_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void focus_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void zapiszOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void sfmlTimerOnTimer( wxTimerEvent& event ) { event.Skip(); }
 
 
 	public:
