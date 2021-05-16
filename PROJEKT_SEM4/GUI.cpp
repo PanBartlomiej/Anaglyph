@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct 26 2018)
+// C++ code generated with wxFormBuilder (version 3.9.0 Apr  7 2021)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -33,39 +33,40 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wczytaj = new wxButton( this, wxID_ANY, wxT("Wczytaj Plik"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer3->Add( wczytaj, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 
-	wxGridSizer* gSizer1;
-	gSizer1 = new wxGridSizer( 0, 2, 0, 0 );
+	wxBoxSizer* bSizer4;
+	bSizer4 = new wxBoxSizer( wxVERTICAL );
 
+	bSizer4->SetMinSize( wxSize( 100,-1 ) );
 	obrtot_x = new wxStaticText( this, wxID_ANY, wxT("Obrót X:"), wxDefaultPosition, wxDefaultSize, 0 );
 	obrtot_x->Wrap( -1 );
-	gSizer1->Add( obrtot_x, 0, wxALL, 5 );
+	bSizer4->Add( obrtot_x, 0, wxALL, 5 );
 
-	obrot_x_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	gSizer1->Add( obrot_x_slider, 0, wxALL, 5 );
+	obrot_x_slider = new wxSlider( this, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	bSizer4->Add( obrot_x_slider, 0, wxALL|wxEXPAND, 5 );
 
 	m_staticText2 = new wxStaticText( this, wxID_ANY, wxT("Obrót Y:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText2->Wrap( -1 );
-	gSizer1->Add( m_staticText2, 0, wxALL, 5 );
+	bSizer4->Add( m_staticText2, 0, wxALL, 5 );
 
-	obrot_y_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	gSizer1->Add( obrot_y_slider, 0, wxALL, 5 );
+	obrot_y_slider = new wxSlider( this, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	bSizer4->Add( obrot_y_slider, 0, wxALL|wxEXPAND, 5 );
 
 	m_staticText3 = new wxStaticText( this, wxID_ANY, wxT("Obrót Z:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText3->Wrap( -1 );
-	gSizer1->Add( m_staticText3, 0, wxALL, 5 );
+	bSizer4->Add( m_staticText3, 0, wxALL, 5 );
 
-	obrot_z_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	gSizer1->Add( obrot_z_slider, 0, wxALL, 5 );
+	obrot_z_slider = new wxSlider( this, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	bSizer4->Add( obrot_z_slider, 0, wxALL|wxEXPAND, 5 );
 
 	m_staticText4 = new wxStaticText( this, wxID_ANY, wxT("Przybliż:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText4->Wrap( -1 );
-	gSizer1->Add( m_staticText4, 0, wxALL, 5 );
+	bSizer4->Add( m_staticText4, 0, wxALL, 5 );
 
-	focus_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	gSizer1->Add( focus_slider, 0, wxALL, 5 );
+	focus_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	bSizer4->Add( focus_slider, 0, wxALL|wxEXPAND, 5 );
 
 
-	bSizer3->Add( gSizer1, 0, wxEXPAND, 5 );
+	bSizer3->Add( bSizer4, 1, wxEXPAND, 5 );
 
 	zapisz = new wxButton( this, wxID_ANY, wxT("zapisz"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer3->Add( zapisz, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
@@ -77,6 +78,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	this->SetSizer( bSizer1 );
 	this->Layout();
 	m_timer1.SetOwner( this, wxID_ANY );
+	m_timer1.Start( 20 );
+
 
 	this->Centre( wxBOTH );
 

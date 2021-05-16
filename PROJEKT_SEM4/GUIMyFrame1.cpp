@@ -1,43 +1,11 @@
 #include "GUIMyFrame1.h"
-#include <vector>
 #include <fstream>
 
-struct Point {
-    double _x, _y, _z;
-    Point(double x, double y, double z) : _x(x), _y(y), _z(z) {}
-    Point() = default;
-    void print()const { printf("%f %f %f", _x, _y, _z); }
-    void set(double x, double y, double z) { _x = x; _y = y, _z = z; }
-};
 
-
-
-struct odc {
-    Point _begin, _end;
-   // Color color; 
-    double _grubosc;
-    odc(Point begin, Point end,double grubosc) :_begin(begin), _end(end),_grubosc(grubosc) {}
-
-};
-
-std::vector<odc> data;
-
-class kulaa {
-public:
-    
-    Point _point;
-    double _sr; 
-    kulaa() {}
-};
-kulaa kula;
-
-GUIMyFrame1::GUIMyFrame1( wxWindow* parent )
-:
-MyFrame1( parent )
+GUIMyFrame1::GUIMyFrame1( wxWindow* parent ) : MyFrame1( parent )
 {
 
 }
-
 
 void GUIMyFrame1::wczytajOnButtonClick( wxCommandEvent& event )
 {
@@ -49,8 +17,6 @@ void GUIMyFrame1::wczytajOnButtonClick( wxCommandEvent& event )
         double test;
         double x1, y1, z1, x2, y2, z2;
         double grubosc;
-        
-        
          
         std::ifstream in(WxOpenFileDialog.GetPath().ToAscii());
         if (in.is_open())
@@ -61,13 +27,13 @@ void GUIMyFrame1::wczytajOnButtonClick( wxCommandEvent& event )
                 in >> test;
                 if (test == 1) {
                     in >> x1 >> y1 >> z1 >> x2 >> y2 >> z2 >> grubosc;
-                    data.push_back(odc(Point(x1, y1, z1), Point(x2, y2, z2), grubosc));
+                    data.push_back(Section(Point(x1, y1, z1), Point(x2, y2, z2), grubosc));
                 }
                 else if (test == 2) {
                     in >> x1 >> y1 >> z1 >> x2;
                     {
-                        kula._point.set(x1, y1, z1);
-                        kula._sr = x2;
+                        kula.center = Point(x1, y1, z1);
+                        kula.ray = x2;
                     }
                     
                 }
@@ -75,7 +41,6 @@ void GUIMyFrame1::wczytajOnButtonClick( wxCommandEvent& event )
             in.close();
         }
     }
-   
 }
 
 

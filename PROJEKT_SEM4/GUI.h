@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct 26 2018)
+// C++ code generated with wxFormBuilder (version 3.9.0 Apr  7 2021)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -16,10 +16,10 @@
 #include <wx/settings.h>
 #include <wx/string.h>
 #include <wx/sizer.h>
+#include <wx/button.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
-#include <wx/button.h>
 #include <wx/stattext.h>
 #include <wx/slider.h>
 #include <wx/timer.h>
@@ -49,7 +49,7 @@ class MyFrame1 : public wxFrame
 		wxButton* zapisz;
 		wxTimer m_timer1;
 
-		// Virtual event handlers, overide them in your derived class
+		// Virtual event handlers, override them in your derived class
 		virtual void wczytajOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void obrot_x_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void obrot_y_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
