@@ -10,8 +10,11 @@ bin/GUIMyFrame1.o: bin
 bin/wec.o: bin
 	g++ -std=c++11 -c -lm "PROJEKT_SEM4/wec.cpp" -o "bin/wec.o" `wx-config --cxxflags --libs` -lfreeimage -lfreeimageplus -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 
-bin/main: bin bin/wec.o bin/GUIMyFrame1.o bin/GUI.o
-	g++ -std=c++11 -lm "bin/wec.o" "bin/GUIMyFrame1.o" "bin/GUI.o" "PROJEKT_SEM4/main.cpp" -o "bin/main" `wx-config --cxxflags --libs` -lfreeimage -lfreeimageplus -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+bin/RenderWindow.o: bin
+	g++ -std=c++11 -c -lm "PROJEKT_SEM4/RenderWindow.cpp" -o "bin/RenderWindow.o" `wx-config --cxxflags --libs` -lfreeimage -lfreeimageplus -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+	
+bin/main: bin bin/wec.o bin/GUIMyFrame1.o bin/GUI.o bin/RenderWindow.o
+	g++ -std=c++11 -lm "bin/wec.o" "bin/GUIMyFrame1.o" "bin/GUI.o" "bin/RenderWindow.o" "PROJEKT_SEM4/main.cpp" -o "bin/main" `wx-config --cxxflags --libs` -lfreeimage -lfreeimageplus -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 
 clear:
 	rm -rf bin

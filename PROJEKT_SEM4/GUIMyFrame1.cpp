@@ -2,9 +2,31 @@
 #include <fstream>
 
 
-GUIMyFrame1::GUIMyFrame1( wxWindow* parent ) : MyFrame1( parent )
+GUIMyFrame1::GUIMyFrame1( wxWindow* parent ) : MyFrame1( parent ), renderWindow(NULL)
 {
+    openRenderWindow(true);
+}
 
+GUIMyFrame1::~GUIMyFrame1()
+{
+    closeRenderWindow();
+}
+
+void GUIMyFrame1::closeRenderWindow()
+{
+    if (renderWindow)
+    {
+        delete renderWindow;
+        renderWindow = NULL;
+    }
+}
+
+void GUIMyFrame1::openRenderWindow(const bool restart, const int width, const int height, const char* title)
+{
+    if (restart)
+        closeRenderWindow();
+    if (!renderWindow)
+        renderWindow = new RenderWindow(width, height, title);
 }
 
 void GUIMyFrame1::wczytajOnButtonClick( wxCommandEvent& event )
@@ -69,6 +91,14 @@ Matrix4 GUIMyFrame1::rotuj_z(double x) {
     macierz.data[2][2] = 1.0; macierz.data[3][3] = 1.0;
     return macierz;
 }
+
+void GUIMyFrame1::sfmlTimerOnTimer( wxTimerEvent& event )
+{
+    if (renderWindow)
+        if (!renderWindow->processMessages())
+            closeRenderWindow();
+}
+        
 void GUIMyFrame1::obrot_x_sliderOnScroll( wxScrollEvent& event )
 {
 // TODO: Implement obrot_x_sliderOnScroll
