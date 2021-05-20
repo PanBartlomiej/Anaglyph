@@ -2,7 +2,7 @@
 #include <fstream>
 
 
-GUIMyFrame1::GUIMyFrame1( wxWindow* parent ) : MyFrame1( parent ), renderWindow(NULL)
+GUIMyFrame1::GUIMyFrame1( wxWindow* parent ) : MyFrame1( parent ), viewWindow(NULL)
 {
     openRenderWindow(true);
 }
@@ -14,10 +14,10 @@ GUIMyFrame1::~GUIMyFrame1()
 
 void GUIMyFrame1::closeRenderWindow()
 {
-    if (renderWindow)
+    if (viewWindow)
     {
-        delete renderWindow;
-        renderWindow = NULL;
+        delete viewWindow;
+        viewWindow = NULL;
     }
 }
 
@@ -25,8 +25,8 @@ void GUIMyFrame1::openRenderWindow(const bool restart, const int width, const in
 {
     if (restart)
         closeRenderWindow();
-    if (!renderWindow)
-        renderWindow = new RenderWindow(width, height, title);
+    if (!viewWindow)
+        viewWindow = new ViewWindow(width, height, title);
 }
 
 void GUIMyFrame1::wczytajOnButtonClick( wxCommandEvent& event )
@@ -94,8 +94,8 @@ Matrix4 GUIMyFrame1::rotuj_z(double x) {
 
 void GUIMyFrame1::sfmlTimerOnTimer( wxTimerEvent& event )
 {
-    if (renderWindow)
-        if (!renderWindow->processMessages())
+    if (viewWindow)
+        if (!viewWindow->processMessages())
             closeRenderWindow();
 }
         

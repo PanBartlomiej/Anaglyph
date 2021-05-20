@@ -1,62 +1,54 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <vector>
-#include "structures.h"
-#include "wec.h"
 
+#include <SFML/Graphics.hpp>
+#include "wec.h"
+#include "structures.h"
 
 class ViewWindow
 {
-protected:
-	sf::RenderWindow* window;
-	sf::VertexArray arr;
-	const std::vector<Section>* data;
-
-	sf::Vector3f localTranslation;
-	sf::Vector3f localRotation;
-
-public:
-	//
-	//Empty contructor
-	//
-	ViewWindow();
-
-	//
-	//If window isn't opened, create new window
-	//
-	void CreateWindow(int x, int y, const std::wstring nazwa = L"Okno podgl¹dowe");
-
-	//
-	//Check if window is opened
-	//
-	bool IsWindowOpened() const;
-
-	//
-	//set data for future figure building
-	//
-	void setData(const std::vector<Section>);
+    public:
+        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window") : window(sf::VideoMode(width, height), title), _width(width), _height(height), mouseButtonIsDown(false)/*, vertexArray(Lines) */{};
+        
+        ~ViewWindow();
+        
+        bool processMessages();
+        
+        bool closeEvent(sf::Event& event);
+        
+        
+        //
+        //display figures on window
+        //
+        void paint();
+        
+        //
+        //set data for future figure building
+        //
+        void setData(const std::vector<Section>& newData) {};
 
 
-	//
-	//create figures
-	//
-	void Update(const Matrix4& wxTranslation, const Matrix4& wxRotation);
+        //
+        //create figures
+        //
+        void Update(const Matrix4& wxTranslation, const Matrix4& wxRotation) {};
 
-	//
-	//HandleEvents
-	//
-	void HandleEvents();
+        //
+        //HandleEvents
+        //
+        void HandleEvents();
+        
+        //
+        //Save current frame to file jpg
+        //
+        void SaveToFile() const {};
 
-	//
-	//display figures on window
-	//
-	void Display();
-
-	//
-	//Save current frame to file jpg
-	//
-	void SaveToFile() const;
-
-	~ViewWindow();
+            
+        
+    private:
+        sf::RenderWindow window;
+        sf::VertexArray vertexArray;
+        int _width, _height;
+        bool mouseButtonIsDown;
+    
 };
 
