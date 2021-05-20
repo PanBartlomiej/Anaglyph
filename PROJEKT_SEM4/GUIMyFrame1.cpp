@@ -53,9 +53,10 @@ void GUIMyFrame1::wczytajOnButtonClick( wxCommandEvent& event )
                 }
                 else if (test == 2) {
                     in >> x1 >> y1 >> z1 >> x2;
-                    {
-                        kula.center = Point(x1, y1, z1);
-                        kula.ray = x2;
+                    {               //TODO: regulacja rozdzielczości kuli
+                        makeSphere(Point(x1, y1, z1), x2, 100, data);
+                        //kula.center = Point(x1, y1, z1);
+                        //kula.ray = x2; //Po co ta kula w ten sposób? czy potrzebna?
                     }
                     
                 }

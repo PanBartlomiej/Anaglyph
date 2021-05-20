@@ -28,7 +28,6 @@ class ViewWindow
         //
         void setData(const std::vector<Section>& newData) {};
 
-
         //
         //create figures
         //
