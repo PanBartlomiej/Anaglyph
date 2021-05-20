@@ -1,7 +1,13 @@
 #include "wec.h"
+
 Vector4::Vector4()
 {
     data[0] = 0.0; data[1] = 0.0; data[2] = 0.0; data[3] = 1.0;
+}
+
+Vector4::Vector4(const double x, const double y, const double z)
+{
+    data[0] = x; data[1] = y; data[2] = z; data[3] = 1.0;
 }
 
 void Vector4::Print(void)

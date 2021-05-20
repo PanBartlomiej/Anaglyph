@@ -6,6 +6,7 @@ class Vector4
 public:
     double data[4];
     Vector4();
+    Vector4(const double x, const double y, const double z);
     void Print(void);
     void Set(double d1, double d2, double d3);
     double GetX();

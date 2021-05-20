@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "MatrixParallelMultiplier.h"
 #include "wec.h"
 #include "structures.h"
 
@@ -49,6 +50,7 @@ class ViewWindow
         sf::VertexArray vertexArray;
         int _width, _height;
         bool mouseButtonIsDown;
-    
+        ParallerMultiplier multipliers;
+        
 };
 

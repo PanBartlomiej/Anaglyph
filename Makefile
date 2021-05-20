@@ -13,8 +13,11 @@ bin/wec.o: bin
 bin/ViewWindow.o: bin
 	g++ -std=c++11 -c -lm "PROJEKT_SEM4/ViewWindow.cpp" -o "bin/ViewWindow.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 	
-bin/main: bin bin/wec.o bin/GUIMyFrame1.o bin/GUI.o bin/ViewWindow.o
-	g++ -std=c++11 -lm "bin/wec.o" "bin/GUIMyFrame1.o" "bin/GUI.o" "bin/ViewWindow.o" "PROJEKT_SEM4/main.cpp" -o "bin/main" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+bin/MatrixParallelMultiplier.o: bin
+	g++ -std=c++11 -c -lm "PROJEKT_SEM4/MatrixParallelMultiplier.cpp" -o "bin/MatrixParallelMultiplier.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+	
+bin/main: bin bin/wec.o bin/GUIMyFrame1.o bin/GUI.o bin/ViewWindow.o bin/MatrixParallelMultiplier.o
+	g++ -std=c++11 -lm "bin/wec.o" "bin/GUIMyFrame1.o" "bin/GUI.o" "bin/ViewWindow.o" "bin/MatrixParallelMultiplier.o" "PROJEKT_SEM4/main.cpp" -o "bin/main" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 
 clear:
 	rm -rf bin
