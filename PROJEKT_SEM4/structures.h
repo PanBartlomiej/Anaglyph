@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+
 struct Point 
 {
     double x, y, z;
@@ -9,13 +11,24 @@ struct Point
     { 
         printf("%lg %lg %lg ", x, y, z); 
     }
+    
+    Point operator+(const Point& p) const
+    {
+        return Point(p.x+x, p.y+y, p.z+z);
+    }
+    
+    Point operator*(const double d) const
+    {
+        return Point(d*x, d*y, d*z);
+    }
+    
 };
 
 struct Section {
     Point begin, end;
    // Color color; 
     double thickness;
-    Section(Point nbegin, Point nend, double nthickness) : begin(nbegin), end(nend), thickness(nthickness) {}
+    Section(Point nbegin, Point nend, double nthickness = 1) : begin(nbegin), end(nend), thickness(nthickness) {}
 };
 
 struct Sphere {

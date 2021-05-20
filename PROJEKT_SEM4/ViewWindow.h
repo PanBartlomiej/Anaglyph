@@ -4,6 +4,7 @@
 #include "MatrixParallelMultiplier.h"
 #include "wec.h"
 #include "structures.h"
+#include "SphereMaker.h"
 
 class ViewWindow
 {
