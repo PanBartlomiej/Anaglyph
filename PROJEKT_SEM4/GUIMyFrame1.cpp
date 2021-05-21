@@ -76,8 +76,8 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
         }
     }
     else info << "Nie można wczytać pliku";
-    m_richText1->Clear();
-    m_richText1->WriteText(info);
+    m_textCtrl1->Clear();
+    m_textCtrl1->WriteText(info);
 }
 
 

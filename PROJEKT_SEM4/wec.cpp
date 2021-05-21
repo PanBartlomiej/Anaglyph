@@ -1,4 +1,5 @@
 #include "wec.h"
+#include <cmath>
 
 Vector4::Vector4()
 {
@@ -93,4 +94,48 @@ Vector4 operator* (const Matrix4 gMatrix, const Vector4 gVector)
         for (j = 0; j < 4; j++) tmp.data[i] = tmp.data[i] + (gMatrix.data[i][j] * gVector.data[j]);
     }
     return tmp;
+}
+
+Matrix4 CreateRotationMatrix(const double angle, const int axis)
+{
+    double c = cos(angle);
+    double s = sin(angle);
+    
+    int newX = (axis+0) % 3;
+    int newY = (axis+1) % 3;
+    int newZ = (axis+2) % 3;
+    
+    Matrix4 result;
+    result.data[3][3] = 1;
+    
+    result.data[newX][newX] = 1;
+    result.data[newY][newY] = c;
+    result.data[newY][newZ] = -s;
+    result.data[newZ][newY] = s;
+    result.data[newZ][newZ] = c;     
+    
+    return result;
+}
+
+Matrix4 CreateMoveMatrix(const double x, const double y, const double z)
+{
+    Matrix4 temp;
+    temp.data[0][0] = 1;
+    temp.data[1][1] = 1;
+    temp.data[2][2] = 1;
+    
+    temp.data[0][3] = x;
+    temp.data[1][3] = y;
+    temp.data[2][3] = z;
+    
+    return temp;
+}
+
+Matrix4 CreateScaleMatrix(const double kx, const double ky, const double kz)
+{
+    Matrix4 temp;
+    temp.data[0][0] = kx;
+    temp.data[1][1] = ky;
+    temp.data[2][2] = kz;
+    return temp;
 }
