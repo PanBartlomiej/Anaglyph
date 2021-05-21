@@ -7,6 +7,10 @@
 GUIMyFrame1::GUIMyFrame1(wxWindow* parent) : MyFrame1(parent), viewWindow(NULL)
 {
     openRenderWindow(true);
+    obrtot_x->SetLabel(_("Obr\u00F3t X:"));
+    m_staticText2->SetLabel(_("Obr\u00F3t Y:"));
+    m_staticText3->SetLabel(_("Obr\u00F3t Z:"));
+    m_staticText4->SetLabel(_("Focus:"));
 }
 
 GUIMyFrame1::~GUIMyFrame1()
@@ -41,21 +45,23 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
         double test;
         double x1, y1, z1, x2, y2, z2;
         double grubosc;
-        
+        unsigned liczba_k; //liczba krawędzi
         std::ifstream in(WxOpenFileDialog.GetPath().ToAscii());
-       
+
         if (in.is_open())
         {
             info << "Plik wczytany poprawnie\n ";
             data.clear();
+            in >> liczba_k;
+            info << "liczba krawedzi:  "<<liczba_k<<"\n";
             while (!in.eof())
             {
-           
+                
                 in >> test;
                 if (test == 1) {
                     in >> x1 >> y1 >> z1 >> x2 >> y2 >> z2 >> grubosc;
-              
-                    info << x1 <<" "<<y1<<" "<< z1 << " " << x2 <<" "<< y2<<" "<<z2<<" "<<grubosc<<"\n";
+
+                    info << x1 << " " << y1 << " " << z1 << " " << x2 << " " << y2 << " " << z2 << " " << grubosc << "\n";
                     data.push_back(Section(Point(x1, y1, z1), Point(x2, y2, z2), grubosc));
                 }
                 else if (test == 2) {
@@ -70,8 +76,7 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
             in.close();
         }
     }
-    double  pol = 10.0;
-    info << " dugi tekst"<<pol;
+    else info << "Nie można wczytać pliku";
     m_richText1->Clear();
     m_richText1->WriteText(info);
 }
