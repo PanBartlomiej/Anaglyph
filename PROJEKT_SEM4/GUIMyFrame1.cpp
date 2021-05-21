@@ -45,7 +45,6 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
         double test;
         double x1, y1, z1, x2, y2, z2;
         double grubosc;
-        unsigned liczba_k; //liczba krawędzi
         std::ifstream in(WxOpenFileDialog.GetPath().ToAscii());
 
         if (in.is_open())
