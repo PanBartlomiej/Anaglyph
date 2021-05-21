@@ -1,8 +1,10 @@
 #include "GUIMyFrame1.h"
 #include <fstream>
+#include <iostream>   
+#include <string>  
 
 
-GUIMyFrame1::GUIMyFrame1( wxWindow* parent ) : MyFrame1( parent ), viewWindow(NULL)
+GUIMyFrame1::GUIMyFrame1(wxWindow* parent) : MyFrame1(parent), viewWindow(NULL)
 {
     openRenderWindow(true);
 }
@@ -29,41 +31,49 @@ void GUIMyFrame1::openRenderWindow(const bool restart, const int width, const in
         viewWindow = new ViewWindow(width, height, title);
 }
 
-void GUIMyFrame1::wczytajOnButtonClick( wxCommandEvent& event )
+void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
 {
-// TODO: Implement wczytajOnButtonClick
+    // TODO: Implement wczytajOnButtonClick
     wxFileDialog WxOpenFileDialog(this, wxT("Choose a file"), wxT(""), wxT(""), wxT("Geometry file (*.txt)|*.txt"), wxFD_OPEN | wxFD_FILE_MUST_EXIST);
-
+    wxString info = "";
     if (WxOpenFileDialog.ShowModal() == wxID_OK)
     {
         double test;
         double x1, y1, z1, x2, y2, z2;
         double grubosc;
-         
+        
         std::ifstream in(WxOpenFileDialog.GetPath().ToAscii());
+       
         if (in.is_open())
         {
+            info << "Plik wczytany poprawnie\n ";
             data.clear();
             while (!in.eof())
             {
+           
                 in >> test;
                 if (test == 1) {
                     in >> x1 >> y1 >> z1 >> x2 >> y2 >> z2 >> grubosc;
+              
+                    info << x1 <<" "<<y1<<" "<< z1 << " " << x2 <<" "<< y2<<" "<<z2<<" "<<grubosc<<"\n";
                     data.push_back(Section(Point(x1, y1, z1), Point(x2, y2, z2), grubosc));
                 }
                 else if (test == 2) {
                     in >> x1 >> y1 >> z1 >> x2;
                     {               //TODO: regulacja rozdzielczości kuli
                         makeSphere(Point(x1, y1, z1), x2, 100, data);
-                        //kula.center = Point(x1, y1, z1);
-                        //kula.ray = x2; //Po co ta kula w ten sposób? czy potrzebna?
+                        info << "kula:\n" << x1 << " " << y1 << " " << z1 << " r=" << x2 << "\n";
+
                     }
-                    
                 }
             }
             in.close();
         }
     }
+    double  pol = 10.0;
+    info << " dugi tekst"<<pol;
+    m_richText1->Clear();
+    m_richText1->WriteText(info);
 }
 
 
@@ -93,34 +103,34 @@ Matrix4 GUIMyFrame1::rotuj_z(double x) {
     return macierz;
 }
 
-void GUIMyFrame1::sfmlTimerOnTimer( wxTimerEvent& event )
+void GUIMyFrame1::sfmlTimerOnTimer(wxTimerEvent& event)
 {
     if (viewWindow)
         if (!viewWindow->processMessages())
             closeRenderWindow();
 }
-        
-void GUIMyFrame1::obrot_x_sliderOnScroll( wxScrollEvent& event )
+
+void GUIMyFrame1::obrot_x_sliderOnScroll(wxScrollEvent& event)
 {
-// TODO: Implement obrot_x_sliderOnScroll
+    // TODO: Implement obrot_x_sliderOnScroll
 }
 
-void GUIMyFrame1::obrot_y_sliderOnScroll( wxScrollEvent& event )
+void GUIMyFrame1::obrot_y_sliderOnScroll(wxScrollEvent& event)
 {
-// TODO: Implement obrot_y_sliderOnScroll
+    // TODO: Implement obrot_y_sliderOnScroll
 }
 
-void GUIMyFrame1::obrot_z_sliderOnScroll( wxScrollEvent& event )
+void GUIMyFrame1::obrot_z_sliderOnScroll(wxScrollEvent& event)
 {
-// TODO: Implement obrot_z_sliderOnScroll
+    // TODO: Implement obrot_z_sliderOnScroll
 }
 
-void GUIMyFrame1::focus_sliderOnScroll( wxScrollEvent& event )
+void GUIMyFrame1::focus_sliderOnScroll(wxScrollEvent& event)
 {
-// TODO: Implement focus_sliderOnScroll
+    // TODO: Implement focus_sliderOnScroll
 }
 
-void GUIMyFrame1::zapiszOnButtonClick( wxCommandEvent& event )
+void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
 {
-// TODO: Implement zapiszOnButtonClick
+    // TODO: Implement zapiszOnButtonClick
 }

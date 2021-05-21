@@ -24,6 +24,7 @@
 #include <wx/slider.h>
 #include <wx/timer.h>
 #include <wx/frame.h>
+#include <wx/richtext/richtextctrl.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -33,37 +34,37 @@
 ///////////////////////////////////////////////////////////////////////////////
 class MyFrame1 : public wxFrame
 {
-	private:
+private:
 
-	protected:
-		wxPanel* m_panel1;
-		wxButton* wczytaj;
-		wxStaticText* obrtot_x;
-		wxSlider* obrot_x_slider;
-		wxStaticText* m_staticText2;
-		wxSlider* obrot_y_slider;
-		wxStaticText* m_staticText3;
-		wxSlider* obrot_z_slider;
-		wxStaticText* m_staticText4;
-		wxSlider* focus_slider;
-		wxButton* zapisz;
-		wxTimer sfmlTimer;
+protected:
+	//wxPanel* m_panel1;
+	wxButton* wczytaj;
+	wxStaticText* obrtot_x;
+	wxSlider* obrot_x_slider;
+	wxStaticText* m_staticText2;
+	wxSlider* obrot_y_slider;
+	wxStaticText* m_staticText3;
+	wxSlider* obrot_z_slider;
+	wxStaticText* m_staticText4;
+	wxSlider* focus_slider;
+	wxButton* zapisz;
+	wxTimer sfmlTimer;
+	wxRichTextCtrl* m_richText1;
 
-		// Virtual event handlers, override them in your derived class
-		virtual void wczytajOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void obrot_x_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
-		virtual void obrot_y_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
-		virtual void obrot_z_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
-		virtual void focus_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
-		virtual void zapiszOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void sfmlTimerOnTimer( wxTimerEvent& event ) { event.Skip(); }
+	// Virtual event handlers, override them in your derived class
+	virtual void wczytajOnButtonClick(wxCommandEvent& event) { event.Skip(); }
+	virtual void obrot_x_sliderOnScroll(wxScrollEvent& event) { event.Skip(); }
+	virtual void obrot_y_sliderOnScroll(wxScrollEvent& event) { event.Skip(); }
+	virtual void obrot_z_sliderOnScroll(wxScrollEvent& event) { event.Skip(); }
+	virtual void focus_sliderOnScroll(wxScrollEvent& event) { event.Skip(); }
+	virtual void zapiszOnButtonClick(wxCommandEvent& event) { event.Skip(); }
+	virtual void sfmlTimerOnTimer(wxTimerEvent& event) { event.Skip(); }
 
 
-	public:
+public:
 
-		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 969,622 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+	MyFrame1(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(969, 622), long style = wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 
-		~MyFrame1();
+	~MyFrame1();
 
 };
-

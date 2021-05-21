@@ -119,12 +119,12 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>P:\SFML - x64\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.5.1.2\include;P:\SFML - x64\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>P:\wxWidgets\lib\vc_x64_lib;P:\SFML - x64\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\wxWidgets\lib\vc_x64_lib;C:\SFML-2.5.1.2\lib;P:\wxWidgets\lib\vc_x64_lib;P:\SFML - x64\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -148,14 +148,14 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="GUIMyFrame1.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RenderWindow.cpp" />
+    <ClCompile Include="MatrixParallelMultiplier.cpp" />
     <ClCompile Include="ViewWindow.cpp" />
     <ClCompile Include="wec.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GUI.h" />
     <ClInclude Include="GUIMyFrame1.h" />
-    <ClInclude Include="RenderWindow.h" />
+    <ClInclude Include="MatrixParallelMultiplier.h" />
     <ClInclude Include="structures.h" />
     <ClInclude Include="ViewWindow.h" />
     <ClInclude Include="wec.h" />
