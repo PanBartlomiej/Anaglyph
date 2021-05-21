@@ -139,3 +139,12 @@ Matrix4 CreateScaleMatrix(const double kx, const double ky, const double kz)
     temp.data[2][2] = kz;
     return temp;
 }
+
+Matrix4 IdentityMatrix()
+{
+    Matrix4 temp;
+    temp.data[0][0] = 1;
+    temp.data[1][1] = 1;
+    temp.data[2][2] = 1;
+    return temp;
+}

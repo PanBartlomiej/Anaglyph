@@ -9,7 +9,7 @@
 class ViewWindow
 {
     public:
-        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window") : window(sf::VideoMode(width, height), title), _width(width), _height(height), mouseButtonIsDown(false)/*, vertexArray(Lines) */{};
+        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window") : window(sf::VideoMode(width, height), title), _width(width), _height(height), mouseButtonIsDown(false), rightVertexArray(sf::Lines), leftVertexArray(sf::Lines){};
         
         ~ViewWindow();
         
@@ -26,7 +26,7 @@ class ViewWindow
         //
         //set data for future figure building
         //
-        void setData(const std::vector<Section>& newData) {};
+        void setData(const std::vector<Section>& newData);
 
         //
         //create figures
@@ -47,10 +47,13 @@ class ViewWindow
         
     private:
         sf::RenderWindow window;
-        sf::VertexArray vertexArray;
+        sf::VertexArray rightVertexArray;
+        sf::VertexArray leftVertexArray;
         int _width, _height;
         bool mouseButtonIsDown;
         ParallerMultiplier multipliers;
+        
+        void RenderTo(sf::RenderTarget& target);
         
 };
 

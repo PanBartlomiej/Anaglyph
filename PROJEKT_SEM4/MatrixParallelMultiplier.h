@@ -41,7 +41,7 @@ class ParallerMultiplier
         
         inline unsigned int getPointCount() const
         {
-            return 8;
+            return sections->size();
         }
         
         inline unsigned int getThreadCount() const
@@ -65,7 +65,7 @@ class ParallerMultiplier
         Matrix4 rightMatrix;
         sf::VertexArray* vertexArrayLeft;
         sf::VertexArray* vertexArrayRight;
-        std::vector<Section>* sections;
+        const std::vector<Section>* sections;
         double cameraDepth;
     private:
         const unsigned int _threadCount;

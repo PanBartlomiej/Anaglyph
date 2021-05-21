@@ -13,11 +13,11 @@ void SingleMultiplier::operator()()
             _manager.DoneStatus(_id) = true;
         }
         else
-            sf::sleep(sf::milliseconds(3)); //opóźnienie w stanie jałowym
+            sf::sleep(sf::milliseconds(1)); //opóźnienie w stanie jałowym
     }
 }
 
-ParallerMultiplier::ParallerMultiplier(const unsigned int threadCount) : _threadCount(threadCount), calcID(0), _terminating(false), cameraDepth(100)
+ParallerMultiplier::ParallerMultiplier(const unsigned int threadCount) : _threadCount(threadCount), calcID(0), _terminating(false), cameraDepth(1.732050807568877), leftMatrix(IdentityMatrix()), rightMatrix(IdentityMatrix())
 {
     doneStatus = new bool[threadCount];
     for (unsigned int i=0;i<threadCount;i++)
@@ -41,15 +41,24 @@ ParallerMultiplier::~ParallerMultiplier()
 
 void ParallerMultiplier::MultiplePoint(unsigned int index)
 {
-    if (vertexArrayLeft && vertexArrayRight && sections)
+    if (sections)
     {
-        Section& s = sections->at(index);
-
-        Vector4 c = leftMatrix * Vector4(s.begin.x, s.begin.y, std::max(1e-9, s.begin.z));
-        (*vertexArrayLeft)[index] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
-        
-        c = leftMatrix * Vector4(s.end.x, s.end.y, std::max(1e-9, s.end.z));
-        (*vertexArrayRight)[index] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
+        Vector4 c;
+        const Section& s = sections->at(index);
+        if (vertexArrayLeft)
+        {
+            c = leftMatrix * Vector4(s.begin.x, s.begin.y, std::max(1e-9+cameraDepth, s.begin.z+cameraDepth));
+            (*vertexArrayLeft)[(index << 1)] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
+            c = rightMatrix * Vector4(s.end.x, s.end.y, std::max(1e-9+cameraDepth, s.end.z+cameraDepth));
+            (*vertexArrayLeft)[(index << 1)+1] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
+        }
+        if (vertexArrayRight)
+        {
+            c = leftMatrix * Vector4(s.begin.x, s.begin.y, std::max(1e-9+cameraDepth, s.begin.z+cameraDepth));
+            (*vertexArrayRight)[(index << 1)] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
+            c = rightMatrix * Vector4(s.end.x, s.end.y, std::max(1e-9+cameraDepth, s.end.z+cameraDepth));
+            (*vertexArrayRight)[(index << 1)+1] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
+        }
     }
 }
 

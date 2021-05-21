@@ -1,5 +1,7 @@
 #include "ViewWindow.h"
 
+#include <iostream>
+//TODO: remove
 
 ViewWindow::~ViewWindow()
 {
@@ -41,7 +43,25 @@ bool ViewWindow::closeEvent(sf::Event& event)
 
 void ViewWindow::paint()
 {
-    window.clear(sf::Color::Black);
     //rysowanie
+    RenderTo(window);
+    
     window.display();
+}
+
+void ViewWindow::setData(const std::vector<Section>& newData)
+{
+    multipliers.vertexArrayLeft = &leftVertexArray;
+    multipliers.vertexArrayRight = &rightVertexArray;
+    multipliers.sections = &newData;
+    //TODO: matrix
+    multipliers.calculate();
+}
+
+void ViewWindow::RenderTo(sf::RenderTarget& target)
+{
+    window.clear(sf::Color::Black);
+    target.setView(sf::View(sf::FloatRect(-4, -3, 8, 6)));
+    target.draw(leftVertexArray);
+    target.draw(rightVertexArray);
 }

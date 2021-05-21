@@ -30,3 +30,4 @@ public:
 Matrix4 CreateRotationMatrix(const double angle, const int axis);
 Matrix4 CreateMoveMatrix(const double x, const double y, const double z);
 Matrix4 CreateScaleMatrix(const double kx, const double ky, const double kz);
+Matrix4 IdentityMatrix();

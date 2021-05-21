@@ -66,7 +66,7 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
                 else if (test == 2) {
                     in >> x1 >> y1 >> z1 >> x2;
                     {               //TODO: regulacja rozdzielczości kuli
-                        makeSphere(Point(x1, y1, z1), x2, 100, data);
+                        makeSphere(Point(x1, y1, z1), x2, 250, data);
                         info << "kula:\n" << x1 << " " << y1 << " " << z1 << " r=" << x2 << "\n";
 
                     }
@@ -78,6 +78,9 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
     else info << "Nie można wczytać pliku";
     m_textCtrl1->Clear();
     m_textCtrl1->WriteText(info);
+    
+    openRenderWindow(false);
+    viewWindow->setData(data);
 }
 
 
