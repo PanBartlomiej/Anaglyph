@@ -17,7 +17,7 @@ void SingleMultiplier::operator()()
     }
 }
 
-ParallerMultiplier::ParallerMultiplier(const unsigned int threadCount) : _threadCount(threadCount), calcID(0), _terminating(false), cameraDepth(1.732050807568877), leftMatrix(IdentityMatrix()), rightMatrix(IdentityMatrix())
+ParallerMultiplier::ParallerMultiplier(const unsigned int threadCount) : leftColor(sf::Color::Red), rightColor(sf::Color::Blue), _threadCount(threadCount), calcID(0), _terminating(false), cameraDepth(1.732050807568877), leftMatrix(IdentityMatrix()), rightMatrix(IdentityMatrix())
 {
     doneStatus = new bool[threadCount];
     for (unsigned int i=0;i<threadCount;i++)
@@ -47,17 +47,21 @@ void ParallerMultiplier::MultiplePoint(unsigned int index)
         const Section& s = sections->at(index);
         if (vertexArrayLeft)
         {
-            c = leftMatrix * Vector4(s.begin.x, s.begin.y, std::max(1e-9+cameraDepth, s.begin.z+cameraDepth));
-            (*vertexArrayLeft)[(index << 1)] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
-            c = rightMatrix * Vector4(s.end.x, s.end.y, std::max(1e-9+cameraDepth, s.end.z+cameraDepth));
-            (*vertexArrayLeft)[(index << 1)+1] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
+            c = leftMatrix * Vector4(s.begin.x, s.begin.y, s.begin.z);
+            c.data[2] = fabs(c.data[2]+cameraDepth)+1e-9;
+            (*vertexArrayLeft)[(index << 1)] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]), leftColor);
+            c = leftMatrix * Vector4(s.end.x, s.end.y, s.end.z);
+            c.data[2] = fabs(c.data[2]+cameraDepth)+1e-9;
+            (*vertexArrayLeft)[(index << 1)+1] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]), leftColor);
         }
         if (vertexArrayRight)
         {
-            c = leftMatrix * Vector4(s.begin.x, s.begin.y, std::max(1e-9+cameraDepth, s.begin.z+cameraDepth));
-            (*vertexArrayRight)[(index << 1)] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
-            c = rightMatrix * Vector4(s.end.x, s.end.y, std::max(1e-9+cameraDepth, s.end.z+cameraDepth));
-            (*vertexArrayRight)[(index << 1)+1] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]));
+            c = rightMatrix * Vector4(s.begin.x, s.begin.y, s.begin.z);
+            c.data[2] = fabs(c.data[2]+cameraDepth)+1e-9;
+            (*vertexArrayRight)[(index << 1)] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]), rightColor);
+            c = rightMatrix * Vector4(s.end.x, s.end.y, s.end.z);
+            c.data[2] = fabs(c.data[2]+cameraDepth)+1e-9;
+            (*vertexArrayRight)[(index << 1)+1] = sf::Vertex(sf::Vector2f(cameraDepth*c.data[0]/c.data[2], cameraDepth*c.data[1]/c.data[2]), rightColor);
         }
     }
 }
@@ -70,7 +74,7 @@ bool ParallerMultiplier::Done() const
     return true;
 }
 
-void ParallerMultiplier::calculate()
+void ParallerMultiplier::asyncCalculate()
 {
     vertexArrayLeft->resize(2*sections->size());
     vertexArrayRight->resize(2*sections->size());
@@ -79,3 +83,10 @@ void ParallerMultiplier::calculate()
     calcID++;
     wait();
 }
+
+void ParallerMultiplier::calculate()
+{
+    asyncCalculate();
+    wait();
+}
+

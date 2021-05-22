@@ -27,6 +27,7 @@ class ParallerMultiplier
         ~ParallerMultiplier();        
         void MultiplePoint(unsigned int index);
         bool Done() const;
+        void asyncCalculate();        
         void calculate();
         
         inline unsigned int getCalcID() const
@@ -61,6 +62,7 @@ class ParallerMultiplier
             return doneStatus[id];
         }
         
+        sf::Color leftColor, rightColor;
         Matrix4 leftMatrix;
         Matrix4 rightMatrix;
         sf::VertexArray* vertexArrayLeft;

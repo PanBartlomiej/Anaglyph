@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdio.h>
+#include <cmath>
 
 struct Point 
 {
@@ -17,11 +18,41 @@ struct Point
         return Point(p.x+x, p.y+y, p.z+z);
     }
     
+    void operator+=(const Point& p) 
+    {
+        x += p.x;
+        y += p.y;
+        z += p.z;
+    }
+    
+    Point operator-(const Point& p) const
+    {
+        return Point(x-p.x, y-p.y, z-p.z);
+    }
+    
+    void operator-=(const Point& p) 
+    {
+        x -= p.x;
+        y -= p.y;
+        z -= p.z;
+    }
+    
     Point operator*(const double d) const
     {
         return Point(d*x, d*y, d*z);
     }
     
+    void operator*=(const double d)
+    {
+        x *= d;
+        y *= d;
+        z *= d;
+    }
+    
+    double ray() const
+    {
+        return sqrt(x*x+y*y+z*z);
+    }
 };
 
 struct Section {
