@@ -9,11 +9,13 @@
 class ViewWindow
 {
     public:
-        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window") : window(sf::VideoMode(width, height), title), _width(width), _height(height), mouseButtonIsDown(false), rightVertexArray(sf::Lines), leftVertexArray(sf::Lines), zoom(6), eyeDistance(0.1), eyeTarget(5), rotationMatrix(IdentityMatrix()), mainMatrix(IdentityMatrix()) {};
+        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window") : window(sf::VideoMode(width, height), title), _width(width), _height(height), mouseButtonIsDown(false), rightVertexArray(sf::Lines), leftVertexArray(sf::Lines), zoom(6), eyeDistance(0.1), eyeTarget(5), rotationDentisy(100), rotationResistance(0.99), rotationMatrix(IdentityMatrix()), mainMatrix(IdentityMatrix()) {};
         
         ~ViewWindow();
         
         bool processMessages();
+        
+        void heartBeat();
         
         bool closeEvent(sf::Event& event);
         bool mouseDownEvent(sf::Event& event);
@@ -51,6 +53,8 @@ class ViewWindow
         
         double zoom;
         double eyeDistance, eyeTarget;
+        
+        double rotationDentisy, rotationResistance;
     private:
         sf::RenderWindow window;
         sf::VertexArray rightVertexArray;
@@ -62,6 +66,7 @@ class ViewWindow
         
         Point center;
         Matrix4 rotationMatrix, mainMatrix;
+        double rotationSpeedX, rotationSpeedY;
         
         
         void RenderTo(sf::RenderTarget& target);

@@ -13,6 +13,7 @@ bool ViewWindow::processMessages()
     if (window.isOpen())
     {
         HandleEvents();
+        heartBeat();
         paint();
         return true;
     }
@@ -70,10 +71,8 @@ bool ViewWindow::mouseMoveEvent(sf::Event& event)
     {
         if (mouseButtonIsDown)
         {
-            rotationMatrix = CreateRotationMatrix((event.mouseMove.x-mousePositionX)/100.0, 1) * CreateRotationMatrix((event.mouseMove.y-mousePositionY)/100.0, 0) * rotationMatrix;
-            mainMatrix = CreateMoveMatrix(center.x, center.y, center.z) * rotationMatrix * CreateMoveMatrix(-center.x, -center.y, -center.z);
-            UpdateEyeMatrixes();
-            multipliers.calculate();
+            rotationSpeedX = event.mouseMove.x-mousePositionX;
+            rotationSpeedY = event.mouseMove.y-mousePositionY;
         }
         
         mousePositionX = event.mouseMove.x;
@@ -130,6 +129,26 @@ void ViewWindow::setData(const std::vector<Section>& newData)
     center = (min+max)*0.5;
     
     multipliers.wait();
+}
+
+void ViewWindow::heartBeat()
+{
+    rotationMatrix = CreateRotationMatrix(rotationSpeedX/rotationDentisy, 1) * CreateRotationMatrix(rotationSpeedY/rotationDentisy, 0) * rotationMatrix;
+    mainMatrix = CreateMoveMatrix(center.x, center.y, center.z) * rotationMatrix * CreateMoveMatrix(-center.x, -center.y, -center.z);
+ 
+    rotationSpeedX *= rotationResistance;
+    rotationSpeedY *= rotationResistance;
+    
+    if (fabs(rotationSpeedX) < 0.01)
+        rotationSpeedX = 0;
+    if (fabs(rotationSpeedY) < 0.01)
+        rotationSpeedY = 0;
+    
+    if (rotationSpeedX != 0 && rotationSpeedY != 0)
+    {
+        UpdateEyeMatrixes();
+        multipliers.calculate();
+    }
 }
 
 void ViewWindow::RenderTo(sf::RenderTarget& target)
