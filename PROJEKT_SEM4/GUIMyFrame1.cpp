@@ -61,12 +61,13 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
                     in >> x1 >> y1 >> z1 >> x2 >> y2 >> z2 >> grubosc;
 
                     info << x1 << " " << y1 << " " << z1 << " " << x2 << " " << y2 << " " << z2 << " " << grubosc << "\n";
-                    data.push_back(Section(Point(x1, y1, z1), Point(x2, y2, z2), grubosc));
+                    makeSection(Point(x1, y1, z1), Point(x2, y2, z2), grubosc, 16, data);
+                    //data.push_back(Section(Point(x1, y1, z1), Point(x2, y2, z2), grubosc));
                 }
                 else if (test == 2) {
                     in >> x1 >> y1 >> z1 >> x2;
                     {               //TODO: regulacja rozdzielczości kuli
-                        makeSphere(Point(x1, y1, z1), x2, 250, data);
+                        makeSphere(Point(x1, y1, z1), x2, 256, data);
                         info << "kula:\n" << x1 << " " << y1 << " " << z1 << " r=" << x2 << "\n";
 
                     }

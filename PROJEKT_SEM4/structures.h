@@ -49,6 +49,23 @@ struct Point
         z *= d;
     }
     
+    Point operator/(const double d) const
+    {
+        return Point(x/d, y/d, z/d);
+    }
+    
+    void operator/=(const double d)
+    {
+        x /= d;
+        y /= d;
+        z /= d;
+    }
+    
+    bool operator==(const Point& p) const
+    {
+        return (p.x==x && p.y==y && p.z==z);
+    }
+    
     double ray() const
     {
         return sqrt(x*x+y*y+z*z);

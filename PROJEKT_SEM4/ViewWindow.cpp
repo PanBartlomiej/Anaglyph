@@ -1,7 +1,5 @@
 #include "ViewWindow.h"
 
-#include <iostream>
-//TODO: remove
 
 ViewWindow::~ViewWindow()
 {
@@ -25,11 +23,11 @@ void ViewWindow::HandleEvents()
     sf::Event event;
     while (window.pollEvent(event))
     {
-        if (closeEvent(event)) continue;
-        if (mouseDownEvent(event)) continue;
-        if (mouseUpEvent(event)) continue;
-        if (mouseMoveEvent(event)) continue;
-        if (mouseScrollEvent(event)) continue;
+        closeEvent(event);
+        mouseDownEvent(event);
+        mouseUpEvent(event);
+        mouseMoveEvent(event);
+        mouseScrollEvent(event);
         //obsługa reszty komunikatów
     }
 }
@@ -101,10 +99,16 @@ void ViewWindow::UpdateEyeMatrixes()
 
 void ViewWindow::paint()
 {
-    //rysowanie
-    RenderTo(window);
-    
+    RenderTo(window);    
     window.display();
+}
+
+void ViewWindow::Update(const Matrix4& wxTranslation, const Matrix4& wxRotation) 
+{
+    translationMatrix = wxTranslation;
+    rotationMatrix = wxRotation;
+    UpdateEyeMatrixes();
+    multipliers.calculate();
 }
 
 void ViewWindow::setData(const std::vector<Section>& newData)
@@ -133,8 +137,8 @@ void ViewWindow::setData(const std::vector<Section>& newData)
 
 void ViewWindow::heartBeat()
 {
-    rotationMatrix = CreateRotationMatrix(rotationSpeedX/rotationDentisy, 1) * CreateRotationMatrix(rotationSpeedY/rotationDentisy, 0) * rotationMatrix;
-    mainMatrix = CreateMoveMatrix(center.x, center.y, center.z) * rotationMatrix * CreateMoveMatrix(-center.x, -center.y, -center.z);
+    rotationMatrix = CreateRotationMatrix(-rotationSpeedX/rotationDentisy, 1) * CreateRotationMatrix(rotationSpeedY/rotationDentisy, 0) * rotationMatrix;
+    mainMatrix = translationMatrix * CreateMoveMatrix(center.x, center.y, center.z) * rotationMatrix * CreateMoveMatrix(-center.x, -center.y, -center.z);
  
     rotationSpeedX *= rotationResistance;
     rotationSpeedY *= rotationResistance;
@@ -151,11 +155,21 @@ void ViewWindow::heartBeat()
     }
 }
 
-void ViewWindow::RenderTo(sf::RenderTarget& target)
+void ViewWindow::SaveToFile(const std::string& fileName, const unsigned int width, const unsigned int height) const
 {
-    window.clear(sf::Color::Black);
-    //auto size = target.getSize();
-    double k = 3.0/2;//size.x/size.y;
+    sf::RenderTexture renderTexture;
+    renderTexture.create(width, height);
+    RenderTo(renderTexture);
+    sf::Image image = renderTexture.getTexture().copyToImage();
+    image.flipVertically();
+    image.saveToFile(fileName);
+}
+
+void ViewWindow::RenderTo(sf::RenderTarget& target) const
+{
+    target.clear(sf::Color::Black);
+    auto size = target.getSize();
+    double k = (double)size.x/size.y;
     
     target.setView(sf::View(sf::FloatRect(-zoom/2*k, -zoom/2, zoom*k, zoom)));
     

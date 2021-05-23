@@ -1,15 +1,19 @@
 #pragma once
 
+#include <iostream>
+//TODO: remove
+
 #include <SFML/Graphics.hpp>
 #include "MatrixParallelMultiplier.h"
 #include "wec.h"
 #include "structures.h"
 #include "SphereMaker.h"
+#include "SectionMaker.h"
 
 class ViewWindow
 {
     public:
-        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window") : window(sf::VideoMode(width, height), title), _width(width), _height(height), mouseButtonIsDown(false), rightVertexArray(sf::Lines), leftVertexArray(sf::Lines), zoom(6), eyeDistance(0.1), eyeTarget(5), rotationDentisy(100), rotationResistance(0.99), rotationMatrix(IdentityMatrix()), mainMatrix(IdentityMatrix()) {};
+        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window") : window(sf::VideoMode(width, height), title), _width(width), _height(height), mouseButtonIsDown(false), rightVertexArray(sf::Lines), leftVertexArray(sf::Lines), zoom(6), eyeDistance(0.1), eyeTarget(6), rotationDentisy(100), rotationResistance(0.99),  translationMatrix(IdentityMatrix()), rotationMatrix(IdentityMatrix()), mainMatrix(IdentityMatrix()) {};
         
         ~ViewWindow();
         
@@ -23,38 +27,19 @@ class ViewWindow
         bool mouseMoveEvent(sf::Event& event);
         bool mouseScrollEvent(sf::Event& event);
         
-        //
-        //display figures on window
-        //
-        void paint();
-        
-        //
-        //set data for future figure building
-        //
         void setData(const std::vector<Section>& newData);
 
-        //
-        //create figures
-        //
-        void Update(const Matrix4& wxTranslation, const Matrix4& wxRotation) {};
-
-        //
-        //HandleEvents
-        //
-        void HandleEvents();
+        void Update(const Matrix4& wxTranslation, const Matrix4& wxRotation);
         
-        //
-        //Save current frame to file jpg
-        //
-        void SaveToFile() const {};
-        
+        void SaveToFile(const std::string& fileName, const unsigned int width = 1280, const unsigned int height = 1080) const;
         
         void UpdateEyeMatrixes();
         
         double zoom;
         double eyeDistance, eyeTarget;
-        
         double rotationDentisy, rotationResistance;
+        
+        
     private:
         sf::RenderWindow window;
         sf::VertexArray rightVertexArray;
@@ -65,11 +50,13 @@ class ViewWindow
         ParallerMultiplier multipliers;
         
         Point center;
-        Matrix4 rotationMatrix, mainMatrix;
+        Matrix4 translationMatrix, rotationMatrix, mainMatrix;
         double rotationSpeedX, rotationSpeedY;
         
         
-        void RenderTo(sf::RenderTarget& target);
+        void RenderTo(sf::RenderTarget& target) const;
+        void HandleEvents();
+        void paint();
         
 };
 

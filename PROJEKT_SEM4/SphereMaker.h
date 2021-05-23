@@ -4,7 +4,7 @@
 #include <vector>
 #include "structures.h"
 
-inline void makeSphere(const Point center, const double ray, const unsigned int count, std::vector<Section>& out, const double thickness = 1)
+inline void makeSphere(const Point center, const double ray, const unsigned int count, std::vector<Section>& out)
 {
     double a1 = 0;
     double a2 = 0;
@@ -19,7 +19,7 @@ inline void makeSphere(const Point center, const double ray, const unsigned int 
         Point p2 = (center + Point(sin(a2)*cos(a1)*ray, cos(a2)*ray, sin(a2)*sin(a1)*ray));
         Point np2 = (center + Point(sin(a2)*cos(-a1)*ray, cos(a2)*ray, sin(a2)*sin(-a1)*ray));
         
-        out.push_back(Section(p1, p2, thickness));
-        out.push_back(Section(np1, np2, thickness));
+        out.push_back(Section(p1, p2));
+        out.push_back(Section(np1, np2));
     }
 }
