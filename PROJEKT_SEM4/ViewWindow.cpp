@@ -103,12 +103,17 @@ void ViewWindow::paint()
     window.display();
 }
 
+void ViewWindow::Render()
+{
+    UpdateEyeMatrixes();
+    multipliers.calculate();
+}
+
 void ViewWindow::Update(const Matrix4& wxTranslation, const Matrix4& wxRotation) 
 {
     translationMatrix = wxTranslation;
     rotationMatrix = wxRotation;
-    UpdateEyeMatrixes();
-    multipliers.calculate();
+    Render();
 }
 
 void ViewWindow::setData(const std::vector<Section>& newData)
@@ -148,11 +153,8 @@ void ViewWindow::heartBeat()
     if (fabs(rotationSpeedY) < 0.01)
         rotationSpeedY = 0;
     
-    if (rotationSpeedX != 0 && rotationSpeedY != 0)
-    {
-        UpdateEyeMatrixes();
-        multipliers.calculate();
-    }
+    if (rotationSpeedX != 0 && rotationSpeedY != 0)    
+        Render();
 }
 
 void ViewWindow::SaveToFile(const std::string& fileName, const unsigned int width, const unsigned int height) const

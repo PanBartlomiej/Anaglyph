@@ -39,6 +39,7 @@ class ViewWindow
         double eyeDistance, eyeTarget;
         double rotationDentisy, rotationResistance;
         
+        void Render(); //wykonać po każdej zmianie zmiennych!
         
     private:
         sf::RenderWindow window;
