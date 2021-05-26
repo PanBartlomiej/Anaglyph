@@ -63,6 +63,33 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	focus_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
 	bSizer4->Add( focus_slider, 0, wxALL|wxEXPAND, 5 );
 
+	m_staticText5 = new wxStaticText( this, wxID_ANY, wxT("Rozdzielczość"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText5->Wrap( -1 );
+	bSizer4->Add( m_staticText5, 0, wxALL, 5 );
+
+	wxString m_choice1Choices[] = { wxT("800x650") };
+	int m_choice1NChoices = sizeof( m_choice1Choices ) / sizeof( wxString );
+	m_choice1 = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice1NChoices, m_choice1Choices, 0 );
+	m_choice1->SetSelection( 0 );
+	bSizer4->Add( m_choice1, 0, wxALL|wxEXPAND, 5 );
+
+	m_staticText6 = new wxStaticText( this, wxID_ANY, wxT("Szerokość:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText6->Wrap( -1 );
+	bSizer4->Add( m_staticText6, 0, wxALL, 5 );
+
+	m_spinCtrl1 = new wxSpinCtrl( this, wxID_ANY, wxT("800"), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 4096, 0 );
+	bSizer4->Add( m_spinCtrl1, 0, wxALL, 5 );
+
+	m_staticText7 = new wxStaticText( this, wxID_ANY, wxT("Wysokość:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText7->Wrap( -1 );
+	bSizer4->Add( m_staticText7, 0, wxALL, 5 );
+
+	m_spinCtrl2 = new wxSpinCtrl( this, wxID_ANY, wxT("650"), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 4096, 0 );
+	bSizer4->Add( m_spinCtrl2, 0, wxALL, 5 );
+
+	m_button3 = new wxButton( this, wxID_ANY, wxT("Uruchom podgląd"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer4->Add( m_button3, 0, wxALL|wxEXPAND, 5 );
+
 
 	bSizer3->Add( bSizer4, 1, wxEXPAND, 5 );
 

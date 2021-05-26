@@ -22,6 +22,8 @@
 #include <wx/icon.h>
 #include <wx/stattext.h>
 #include <wx/slider.h>
+#include <wx/choice.h>
+#include <wx/spinctrl.h>
 #include <wx/timer.h>
 #include <wx/frame.h>
 
@@ -46,6 +48,13 @@ class MyFrame1 : public wxFrame
 		wxSlider* obrot_z_slider;
 		wxStaticText* m_staticText4;
 		wxSlider* focus_slider;
+		wxStaticText* m_staticText5;
+		wxChoice* m_choice1;
+		wxStaticText* m_staticText6;
+		wxSpinCtrl* m_spinCtrl1;
+		wxStaticText* m_staticText7;
+		wxSpinCtrl* m_spinCtrl2;
+		wxButton* m_button3;
 		wxButton* zapisz;
 		wxTimer sfmlTimer;
 
@@ -61,7 +70,7 @@ class MyFrame1 : public wxFrame
 
 	public:
 
-		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 969,622 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 969,673 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~MyFrame1();
 
