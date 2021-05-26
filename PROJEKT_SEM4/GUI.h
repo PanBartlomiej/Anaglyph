@@ -49,12 +49,12 @@ class MyFrame1 : public wxFrame
 		wxStaticText* m_staticText4;
 		wxSlider* focus_slider;
 		wxStaticText* m_staticText5;
-		wxChoice* m_choice1;
+		wxChoice* ResolutionChoice;
 		wxStaticText* m_staticText6;
-		wxSpinCtrl* m_spinCtrl1;
+		wxSpinCtrl* ResolutionWidthSpinCtrl;
 		wxStaticText* m_staticText7;
-		wxSpinCtrl* m_spinCtrl2;
-		wxButton* m_button3;
+		wxSpinCtrl* ResolutionHeightSpinCtrl;
+		wxButton* openViewWindowBtn;
 		wxButton* zapisz;
 		wxTimer sfmlTimer;
 
@@ -64,6 +64,10 @@ class MyFrame1 : public wxFrame
 		virtual void obrot_y_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void obrot_z_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void focus_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
+		virtual void ResolutionChoiceOnChoice( wxCommandEvent& event ) { event.Skip(); }
+		virtual void ResolutionWidthSpinCtrlOnSpinCtrl( wxSpinEvent& event ) { event.Skip(); }
+		virtual void ResolutionHeightSpinCtrlOnSpinCtrl( wxSpinEvent& event ) { event.Skip(); }
+		virtual void openViewWindowBtnOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void zapiszOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void sfmlTimerOnTimer( wxTimerEvent& event ) { event.Skip(); }
 
