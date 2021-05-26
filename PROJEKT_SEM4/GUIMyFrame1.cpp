@@ -138,7 +138,19 @@ void GUIMyFrame1::focus_sliderOnScroll(wxScrollEvent& event)
     // TODO: Implement focus_sliderOnScroll
 }
 
-void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
+
+void GUIMyFrame1::zapiszOnButtonClick( wxCommandEvent& event )
 {
-    // TODO: Implement zapiszOnButtonClick
+
+std::string fileName;
+
+wxFileDialog saveDialog(this, "", "", "", "PNG files (*.png)|*.png|JPG files (*.jpg)|*.jpg", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+
+if (saveDialog.ShowModal() == wxID_CANCEL) {
+return;
+}
+fileName = saveDialog.GetPath();
+if(viewWindow)
+viewWindow->ViewWindow::SaveToFile(fileName);
+
 }
