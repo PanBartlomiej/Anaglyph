@@ -13,7 +13,7 @@
 class ViewWindow
 {
     public:
-        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window") : window(sf::VideoMode(width, height), title), _width(width), _height(height), mouseButtonIsDown(false), rightVertexArray(sf::Lines), leftVertexArray(sf::Lines), zoom(6), eyeDistance(0.1), eyeTarget(6), rotationDentisy(100), rotationResistance(0.99),  translationMatrix(IdentityMatrix()), rotationMatrix(IdentityMatrix()), mainMatrix(IdentityMatrix()) {};
+        ViewWindow(const int width = 800, const int height = 650, const char* title = "View window");
         
         ~ViewWindow();
         

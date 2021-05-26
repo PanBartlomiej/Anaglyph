@@ -1,5 +1,23 @@
 #include "ViewWindow.h"
 
+ViewWindow::ViewWindow(const int width, const int height, const char* title) 
+    : window(sf::VideoMode(width, height), title), _width(width), _height(height), 
+    mouseButtonIsDown(false), 
+    rightVertexArray(sf::Lines), 
+    leftVertexArray(sf::Lines), 
+    zoom(6), eyeDistance(0.1), 
+    eyeTarget(6), 
+    rotationDentisy(100), 
+    rotationResistance(0.99), 
+    translationMatrix(IdentityMatrix()), 
+    rotationMatrix(IdentityMatrix()), 
+    mainMatrix(IdentityMatrix())
+{ 
+    window.setActive(); 
+    int x = sf::VideoMode::getDesktopMode().width;
+    int y = sf::VideoMode::getDesktopMode().height;
+    window.setPosition(sf::Vector2i(x- width, 0));
+};
 
 ViewWindow::~ViewWindow()
 {

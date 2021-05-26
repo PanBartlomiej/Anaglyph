@@ -11,6 +11,7 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent) : MyFrame1(parent), viewWindow(NULL)
     m_staticText2->SetLabel(_("Obr\u00F3t Y:"));
     m_staticText3->SetLabel(_("Obr\u00F3t Z:"));
     m_staticText4->SetLabel(_("Focus:"));
+    MyFrame1::SetPosition(wxPoint(0, 0));
 }
 
 GUIMyFrame1::~GUIMyFrame1()
