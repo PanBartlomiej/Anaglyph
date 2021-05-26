@@ -34,6 +34,7 @@ class ViewWindow
         void SaveToFile(const std::string& fileName, const unsigned int width = 1280, const unsigned int height = 1080) const;
         
         void UpdateEyeMatrixes();
+
         
         double zoom;
         double eyeDistance, eyeTarget;

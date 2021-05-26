@@ -43,10 +43,11 @@ public:
 	/** Constructor */
 	GUIMyFrame1(wxWindow* parent);
 	//// end generated class members
-	Matrix4 rotuj_x(double x);
-	Matrix4 rotuj_y(double y);
-	Matrix4 rotuj_z(double z);
+
+	Matrix4 rotacja() const;
+
 	ViewWindow* viewWindow;
+
 
 	std::vector<Section> data;
 	Sphere kula;

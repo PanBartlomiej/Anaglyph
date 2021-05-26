@@ -84,33 +84,6 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
     viewWindow->setData(data);
 }
 
-
-Matrix4 GUIMyFrame1::rotuj_x(double x) {
-    Matrix4 macierz;
-    double fi = (x * M_PI / 180.0);
-    macierz.data[0][0] = 1.0; macierz.data[1][1] = cos(fi);
-    macierz.data[2][2] = cos(fi); macierz.data[3][3] = 1.0;
-    macierz.data[1][2] = -sin(fi); macierz.data[2][1] = sin(fi);
-    return macierz;
-}
-Matrix4 GUIMyFrame1::rotuj_y(double x) {
-    Matrix4 macierz;
-    double fi = (x * M_PI / 180.0);
-    macierz.data[0][0] = cos(fi); macierz.data[0][2] = sin(fi);
-    macierz.data[1][1] = 1.0;   macierz.data[2][0] = -sin(fi);
-    macierz.data[2][2] = sin(fi); macierz.data[3][3] = 1.0;
-    return macierz;
-
-}
-Matrix4 GUIMyFrame1::rotuj_z(double x) {
-    Matrix4 macierz;
-    double fi = (x * M_PI / 180.0);
-    macierz.data[0][0] = cos(fi); macierz.data[1][1] = cos(fi);
-    macierz.data[0][1] = -sin(fi); macierz.data[1][0] = sin(fi);
-    macierz.data[2][2] = 1.0; macierz.data[3][3] = 1.0;
-    return macierz;
-}
-
 void GUIMyFrame1::sfmlTimerOnTimer(wxTimerEvent& event)
 {
     if (viewWindow)
@@ -118,39 +91,83 @@ void GUIMyFrame1::sfmlTimerOnTimer(wxTimerEvent& event)
             closeRenderWindow();
 }
 
+
+Matrix4 GUIMyFrame1::rotacja() const
+{
+    float angle_x = obrot_x_slider->GetValue() * M_PI / 180.;
+    float angle_y = obrot_y_slider->GetValue() * M_PI / 180.;
+    float angle_z = obrot_z_slider->GetValue() * M_PI / 180.;
+    Matrix4 rotate = CreateRotationMatrix(angle_y, 2) * CreateRotationMatrix(angle_x, 1) * CreateRotationMatrix(angle_z, 0);
+    return rotate;
+}
+
 void GUIMyFrame1::obrot_x_sliderOnScroll(wxScrollEvent& event)
 {
-    // TODO: Implement obrot_x_sliderOnScroll
+    if (viewWindow)
+    {
+        Matrix4 transformation = Matrix4();
+        transformation.data[0][0] = 1;
+        transformation.data[1][1] = 1;
+        transformation.data[2][2] = 1;
+
+        Matrix4 rotate = rotacja();
+        viewWindow->Update(transformation, rotate);
+    }
 }
 
 void GUIMyFrame1::obrot_y_sliderOnScroll(wxScrollEvent& event)
 {
-    // TODO: Implement obrot_y_sliderOnScroll
+    if (viewWindow)
+    {
+        Matrix4 transformation = Matrix4();
+        transformation.data[0][0] = 1;
+        transformation.data[1][1] = 1;
+        transformation.data[2][2] = 1;
+
+        Matrix4 rotate = rotacja();
+        viewWindow->Update(transformation, rotate);
+    }
 }
 
 void GUIMyFrame1::obrot_z_sliderOnScroll(wxScrollEvent& event)
 {
-    // TODO: Implement obrot_z_sliderOnScroll
+    if (viewWindow)
+    {
+        Matrix4 transformation = Matrix4();
+        transformation.data[0][0] = 1;
+        transformation.data[1][1] = 1;
+        transformation.data[2][2] = 1;
+
+        Matrix4 rotate = rotacja();
+        viewWindow->Update(transformation, rotate);
+    }
 }
 
 void GUIMyFrame1::focus_sliderOnScroll(wxScrollEvent& event)
 {
-    // TODO: Implement focus_sliderOnScroll
+    if (viewWindow)
+    {
+        Matrix4 transformation = Matrix4();
+        transformation.data[0][0] = 1;
+        transformation.data[1][1] = 1;
+        transformation.data[2][2] = focus_slider->GetValue()/100.;
+
+        Matrix4 rotate = CreateRotationMatrix(obrot_z_slider->GetValue() * M_PI / 180., 0);
+        viewWindow->Update(transformation, rotate);
+    }
 }
 
 
 void GUIMyFrame1::zapiszOnButtonClick( wxCommandEvent& event )
 {
+    std::string fileName;
 
-std::string fileName;
+    wxFileDialog saveDialog(this, "", "", "", "PNG files (*.png)|*.png|JPG files (*.jpg)|*.jpg", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
-wxFileDialog saveDialog(this, "", "", "", "PNG files (*.png)|*.png|JPG files (*.jpg)|*.jpg", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-
-if (saveDialog.ShowModal() == wxID_CANCEL) {
-return;
-}
-fileName = saveDialog.GetPath();
-if(viewWindow)
-viewWindow->ViewWindow::SaveToFile(fileName);
-
+    if (saveDialog.ShowModal() == wxID_CANCEL) {
+    return;
+    }
+    fileName = saveDialog.GetPath();
+    if(viewWindow)
+    viewWindow->ViewWindow::SaveToFile(fileName);
 }
