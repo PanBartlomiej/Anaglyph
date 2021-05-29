@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version 3.9.0 Apr  7 2021)
+// C++ code generated with wxFormBuilder (version Oct 26 2018)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -16,10 +16,10 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/sizer.h>
-#include <wx/button.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
+#include <wx/button.h>
 #include <wx/stattext.h>
 #include <wx/slider.h>
 #include <wx/choice.h>
@@ -48,6 +48,8 @@ class MyFrame1 : public wxFrame
 		wxSlider* obrot_z_slider;
 		wxStaticText* m_staticText4;
 		wxSlider* focus_slider;
+		wxStaticText* m_staticText8;
+		wxSlider* distance_eye_slider;
 		wxStaticText* m_staticText5;
 		wxChoice* ResolutionChoice;
 		wxStaticText* m_staticText6;
@@ -58,12 +60,13 @@ class MyFrame1 : public wxFrame
 		wxButton* zapisz;
 		wxTimer sfmlTimer;
 
-		// Virtual event handlers, override them in your derived class
+		// Virtual event handlers, overide them in your derived class
 		virtual void wczytajOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void obrot_x_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void obrot_y_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void obrot_z_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void focus_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
+		virtual void distance_eye_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void ResolutionChoiceOnChoice( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ResolutionWidthSpinCtrlOnSpinCtrl( wxSpinEvent& event ) { event.Skip(); }
 		virtual void ResolutionHeightSpinCtrlOnSpinCtrl( wxSpinEvent& event ) { event.Skip(); }

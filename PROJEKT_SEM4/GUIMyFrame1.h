@@ -34,7 +34,7 @@ protected:
 	void obrot_z_sliderOnScroll(wxScrollEvent& event);
 	void focus_sliderOnScroll(wxScrollEvent& event);
 	void zapiszOnButtonClick(wxCommandEvent& event);
-
+	void distance_eye_sliderOnScroll(wxScrollEvent& event);
 	void sfmlTimerOnTimer(wxTimerEvent& event);
 
 	void closeRenderWindow();
@@ -52,8 +52,6 @@ public:
 	std::vector<Section> data;
 	Sphere kula;
 	unsigned liczba_k; //liczba krawędzi
-
-
 };
 
 

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version 3.9.0 Apr  7 2021)
+// C++ code generated with wxFormBuilder (version Oct 26 2018)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -63,6 +63,13 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	focus_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
 	bSizer4->Add( focus_slider, 0, wxALL|wxEXPAND, 5 );
 
+	m_staticText8 = new wxStaticText( this, wxID_ANY, wxT("Rozstaw oczu:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText8->Wrap( -1 );
+	bSizer4->Add( m_staticText8, 0, wxALL, 5 );
+
+	distance_eye_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	bSizer4->Add( distance_eye_slider, 0, wxALL|wxEXPAND, 5 );
+
 	m_staticText5 = new wxStaticText( this, wxID_ANY, wxT("Rozdzielczość"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText5->Wrap( -1 );
 	bSizer4->Add( m_staticText5, 0, wxALL, 5 );
@@ -103,7 +110,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	this->SetSizer( bSizer1 );
 	this->Layout();
 	sfmlTimer.SetOwner( this, wxID_ANY );
-	sfmlTimer.Start( 20 );
+	sfmlTimer.Start( 5 );
 
 
 	this->Centre( wxBOTH );
@@ -146,6 +153,15 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	focus_slider->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::focus_sliderOnScroll ), NULL, this );
 	focus_slider->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::focus_sliderOnScroll ), NULL, this );
 	focus_slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::focus_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
 	ResolutionChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::ResolutionChoiceOnChoice ), NULL, this );
 	ResolutionWidthSpinCtrl->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MyFrame1::ResolutionWidthSpinCtrlOnSpinCtrl ), NULL, this );
 	ResolutionHeightSpinCtrl->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MyFrame1::ResolutionHeightSpinCtrlOnSpinCtrl ), NULL, this );
@@ -194,6 +210,15 @@ MyFrame1::~MyFrame1()
 	focus_slider->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::focus_sliderOnScroll ), NULL, this );
 	focus_slider->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::focus_sliderOnScroll ), NULL, this );
 	focus_slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::focus_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
+	distance_eye_slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
 	ResolutionChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::ResolutionChoiceOnChoice ), NULL, this );
 	ResolutionWidthSpinCtrl->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MyFrame1::ResolutionWidthSpinCtrlOnSpinCtrl ), NULL, this );
 	ResolutionHeightSpinCtrl->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MyFrame1::ResolutionHeightSpinCtrlOnSpinCtrl ), NULL, this );

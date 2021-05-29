@@ -158,6 +158,11 @@ void GUIMyFrame1::focus_sliderOnScroll(wxScrollEvent& event)
     }
 }
 
+void GUIMyFrame1::distance_eye_sliderOnScroll(wxScrollEvent& event)
+{
+    // TODO: Implement distance_eye_sliderOnScroll
+}
+
 
 void GUIMyFrame1::zapiszOnButtonClick( wxCommandEvent& event )
 {
