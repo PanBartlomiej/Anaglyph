@@ -51,7 +51,7 @@ public:
 
 	std::vector<Section> data;
 	Sphere kula;
-        unsigned liczba_k; //liczba krawędzi
+	unsigned liczba_k; //liczba krawędzi
 
 
 };

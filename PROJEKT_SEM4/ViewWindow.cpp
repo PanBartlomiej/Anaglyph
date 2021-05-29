@@ -81,16 +81,26 @@ bool ViewWindow::mouseUpEvent(sf::Event& event)
     return false;
 }
 
+double sign(double x)
+{
+    if (x < 0.)
+        return -1.;
+    return 1.;
+}
+
 bool ViewWindow::mouseMoveEvent(sf::Event& event)
 {
     if (event.type == sf::Event::MouseMoved)
     {
         if (mouseButtonIsDown)
         {
-            rotationSpeedX = event.mouseMove.x-mousePositionX;
-            rotationSpeedY = event.mouseMove.y-mousePositionY;
+            rotationSpeedX += (event.mouseMove.x - mousePositionX) * 0.01;
+            rotationSpeedY += (event.mouseMove.y - mousePositionY) * 0.01;
+
+            rotationSpeedX = sign(rotationSpeedX) * std::min(5., abs(rotationSpeedX));
+            rotationSpeedY = sign(rotationSpeedY) * std::min(5., abs(rotationSpeedY));
         }
-        
+
         mousePositionX = event.mouseMove.x;
         mousePositionY = event.mouseMove.y;
         return true;
@@ -129,6 +139,7 @@ void ViewWindow::Render()
 
 void ViewWindow::Update(const Matrix4& wxTranslation, const Matrix4& wxRotation) 
 {
+    rotationSpeedX = rotationSpeedY = 0.;
     translationMatrix = wxTranslation;
     rotationMatrix = wxRotation;
     Render();
