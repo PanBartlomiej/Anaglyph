@@ -169,6 +169,18 @@ void ViewWindow::setData(const std::vector<Section>& newData)
     multipliers.wait();
 }
 
+void ViewWindow::setEyeFocus(double focus)
+{
+    eyeTarget = focus;
+    Render();
+}
+
+void ViewWindow::setEyeDistance(double distance)
+{
+    eyeDistance = distance;
+    Render();
+}
+
 void ViewWindow::heartBeat()
 {
     rotationMatrix = CreateRotationMatrix(-rotationSpeedX/rotationDentisy, 1) * CreateRotationMatrix(rotationSpeedY/rotationDentisy, 0) * rotationMatrix;

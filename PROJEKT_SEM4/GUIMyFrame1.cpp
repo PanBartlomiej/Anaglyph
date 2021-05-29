@@ -148,19 +148,16 @@ void GUIMyFrame1::focus_sliderOnScroll(wxScrollEvent& event)
 {
     if (viewWindow)
     {
-        Matrix4 transformation = Matrix4();
-        transformation.data[0][0] = 1;
-        transformation.data[1][1] = 1;
-        transformation.data[2][2] = focus_slider->GetValue()/100.;
-
-        Matrix4 rotate = CreateRotationMatrix(obrot_z_slider->GetValue() * M_PI / 180., 0);
-        viewWindow->Update(transformation, rotate);
+        viewWindow->setEyeFocus(2 + focus_slider->GetValue() / 10.);
     }
 }
 
 void GUIMyFrame1::distance_eye_sliderOnScroll(wxScrollEvent& event)
 {
-    // TODO: Implement distance_eye_sliderOnScroll
+    if (viewWindow)
+    {
+        viewWindow->setEyeDistance(0.1 + (distance_eye_slider->GetValue()-50.)/1000. );
+    }
 }
 
 

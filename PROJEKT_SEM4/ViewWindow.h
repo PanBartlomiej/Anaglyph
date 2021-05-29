@@ -29,10 +29,13 @@ class ViewWindow
         
         void setData(const std::vector<Section>& newData);
 
+        void setEyeFocus(double focus);
+
+        void setEyeDistance(double distance);
+
         void Update(const Matrix4& wxTranslation, const Matrix4& wxRotation);
         
         void SaveToFile(const std::string& fileName, const unsigned int width = 1280, const unsigned int height = 1080) const;
-        
         void UpdateEyeMatrixes();
 
         
