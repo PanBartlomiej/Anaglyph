@@ -170,7 +170,7 @@ void GUIMyFrame1::zapiszOnButtonClick( wxCommandEvent& event )
     if (saveDialog.ShowModal() == wxID_CANCEL) {
     return;
     }
-    fileName = saveDialog.GetPath();
+     fileName = saveDialog.GetPath();
     if(viewWindow)
-    viewWindow->ViewWindow::SaveToFile(fileName);
+        viewWindow->ViewWindow::SaveToFile(fileName, ResolutionWidthSpinCtrl->GetValue(), ResolutionHeightSpinCtrl->GetValue());
 }

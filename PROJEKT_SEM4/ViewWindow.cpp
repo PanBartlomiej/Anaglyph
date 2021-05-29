@@ -155,7 +155,7 @@ void ViewWindow::setData(const std::vector<Section>& newData)
     multipliers.asyncCalculate();
     
     Point min, max;
-    for (auto s : newData)
+    for (const auto& s : newData)
     {
         max.x = std::max(std::max(s.begin.x, s.end.x), center.x);
         max.y = std::max(std::max(s.begin.y, s.end.y), center.y);
@@ -202,13 +202,16 @@ void ViewWindow::SaveToFile(const std::string& fileName, const unsigned int widt
 {
     sf::RenderTexture renderTexture;
     renderTexture.create(width, height);
-    RenderTo(renderTexture);
+
+    sf::RenderStates state = sf::RenderStates::Default;
+    state.transform.scale(double(width) / window.getSize().x, double(height) / window.getSize().y);
+    RenderTo(renderTexture, state);
     sf::Image image = renderTexture.getTexture().copyToImage();
     image.flipVertically();
     image.saveToFile(fileName);
 }
 
-void ViewWindow::RenderTo(sf::RenderTarget& target) const
+void ViewWindow::RenderTo(sf::RenderTarget& target, sf::RenderStates state) const
 {
     target.clear(sf::Color::Black);
     auto size = target.getSize();
@@ -216,7 +219,6 @@ void ViewWindow::RenderTo(sf::RenderTarget& target) const
     
     target.setView(sf::View(sf::FloatRect(-zoom/2*k, -zoom/2, zoom*k, zoom)));
     
-    auto state = sf::RenderStates::Default;
     state.blendMode = sf::BlendMode(sf::BlendMode::Factor::One, sf::BlendMode::Factor::One, sf::BlendMode::Equation::Add);
     
     target.draw(leftVertexArray, state);

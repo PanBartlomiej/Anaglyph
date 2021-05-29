@@ -59,7 +59,7 @@ class ViewWindow
         double rotationSpeedX, rotationSpeedY;
         
         
-        void RenderTo(sf::RenderTarget& target) const;
+        void RenderTo(sf::RenderTarget& target, sf::RenderStates state = sf::RenderStates::Default) const;
         void HandleEvents();
         void paint();
         
