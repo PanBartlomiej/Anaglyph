@@ -217,7 +217,7 @@ void ViewWindow::RenderTo(sf::RenderTarget& target, sf::RenderStates state) cons
     auto size = target.getSize();
     double k = (double)size.x/size.y;
     
-    target.setView(sf::View(sf::FloatRect(-zoom/2*k, -zoom/2, zoom*k, zoom)));
+    target.setView(sf::View(sf::FloatRect(-zoom/2*k * *(state.transform.getMatrix()+0), -zoom/2 * *(state.transform.getMatrix() + 5), zoom*k *  *(state.transform.getMatrix() + 0), zoom * *(state.transform.getMatrix() + 5))));
     
     state.blendMode = sf::BlendMode(sf::BlendMode::Factor::One, sf::BlendMode::Factor::One, sf::BlendMode::Equation::Add);
     

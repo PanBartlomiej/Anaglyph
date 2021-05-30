@@ -156,6 +156,8 @@
     <ClInclude Include="GUI.h" />
     <ClInclude Include="GUIMyFrame1.h" />
     <ClInclude Include="MatrixParallelMultiplier.h" />
+    <ClInclude Include="SectionMaker.h" />
+    <ClInclude Include="SphereMaker.h" />
     <ClInclude Include="structures.h" />
     <ClInclude Include="ViewWindow.h" />
     <ClInclude Include="wec.h" />

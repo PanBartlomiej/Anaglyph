@@ -53,10 +53,10 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
             info << "Plik wczytany poprawnie\n ";
             data.clear();
             in >> liczba_k;
-            info << "liczba krawedzi:  "<<liczba_k<<"\n";
+            info << "liczba krawedzi:  " << liczba_k << "\n";
             while (!in.eof())
             {
-                
+
                 in >> test;
                 if (test == 1) {
                     in >> x1 >> y1 >> z1 >> x2 >> y2 >> z2 >> grubosc;
@@ -80,7 +80,7 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
     else info << "Nie można wczytać pliku";
     m_textCtrl1->Clear();
     m_textCtrl1->WriteText(info);
-    
+
     openRenderWindow(false);
     viewWindow->setData(data);
 }
@@ -156,21 +156,21 @@ void GUIMyFrame1::distance_eye_sliderOnScroll(wxScrollEvent& event)
 {
     if (viewWindow)
     {
-        viewWindow->setEyeDistance(0.1 + (distance_eye_slider->GetValue()-50.)/1000. );
+        viewWindow->setEyeDistance(0.1 + (distance_eye_slider->GetValue() - 50.) / 1000.);
     }
 }
 
 
-void GUIMyFrame1::zapiszOnButtonClick( wxCommandEvent& event )
+void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
 {
     std::string fileName;
 
     wxFileDialog saveDialog(this, "", "", "", "PNG files (*.png)|*.png|JPG files (*.jpg)|*.jpg", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
     if (saveDialog.ShowModal() == wxID_CANCEL) {
-    return;
+        return;
     }
-     fileName = saveDialog.GetPath();
-    if(viewWindow)
+    fileName = saveDialog.GetPath();
+    if (viewWindow)
         viewWindow->ViewWindow::SaveToFile(fileName, ResolutionWidthSpinCtrl->GetValue(), ResolutionHeightSpinCtrl->GetValue());
 }
