@@ -61,6 +61,8 @@ class ParallerMultiplier
         {
             return doneStatus[id];
         }
+
+        void setColors(const sf::Color& c1, const sf::Color& c2);
         
         sf::Color leftColor, rightColor;
         Matrix4 leftMatrix;

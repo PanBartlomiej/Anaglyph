@@ -22,6 +22,7 @@
 #include <wx/button.h>
 #include <wx/stattext.h>
 #include <wx/slider.h>
+#include <wx/clrpicker.h>
 #include <wx/choice.h>
 #include <wx/spinctrl.h>
 #include <wx/timer.h>
@@ -50,6 +51,10 @@ class MyFrame1 : public wxFrame
 		wxSlider* focus_slider;
 		wxStaticText* m_staticText8;
 		wxSlider* distance_eye_slider;
+		wxStaticText* m_staticText13;
+		wxColourPickerCtrl* color_left_colourPicker;
+		wxStaticText* m_staticText14;
+		wxColourPickerCtrl* color_right_colourPicker;
 		wxStaticText* m_staticText5;
 		wxChoice* ResolutionChoice;
 		wxStaticText* m_staticText6;
@@ -57,7 +62,6 @@ class MyFrame1 : public wxFrame
 		wxStaticText* m_staticText7;
 		wxSpinCtrl* ResolutionHeightSpinCtrl;
 		wxButton* openViewWindowBtn;
-		wxButton* zapisz;
 		wxTimer sfmlTimer;
 
 		// Virtual event handlers, overide them in your derived class
@@ -67,17 +71,18 @@ class MyFrame1 : public wxFrame
 		virtual void obrot_z_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void focus_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void distance_eye_sliderOnScroll( wxScrollEvent& event ) { event.Skip(); }
+		virtual void kolor1OnColourChanged( wxColourPickerEvent& event ) { event.Skip(); }
+		virtual void kolor2OnColourChanged( wxColourPickerEvent& event ) { event.Skip(); }
 		virtual void ResolutionChoiceOnChoice( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ResolutionWidthSpinCtrlOnSpinCtrl( wxSpinEvent& event ) { event.Skip(); }
 		virtual void ResolutionHeightSpinCtrlOnSpinCtrl( wxSpinEvent& event ) { event.Skip(); }
 		virtual void openViewWindowBtnOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void zapiszOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void sfmlTimerOnTimer( wxTimerEvent& event ) { event.Skip(); }
 
 
 	public:
 
-		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 969,673 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MyFrame1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1000,750 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~MyFrame1();
 

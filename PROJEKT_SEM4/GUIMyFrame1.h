@@ -35,6 +35,9 @@ protected:
 	void focus_sliderOnScroll(wxScrollEvent& event);
 	void zapiszOnButtonClick(wxCommandEvent& event);
 	void distance_eye_sliderOnScroll(wxScrollEvent& event);
+	void kolor1OnColourChanged(wxColourPickerEvent& event);
+	void kolor2OnColourChanged(wxColourPickerEvent& event);
+	void openViewWindowBtnOnButtonClick(wxCommandEvent& event);
 	void sfmlTimerOnTimer(wxTimerEvent& event);
 
 	void closeRenderWindow();

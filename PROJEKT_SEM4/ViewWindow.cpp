@@ -6,12 +6,13 @@ ViewWindow::ViewWindow(const int width, const int height, const char* title)
     rightVertexArray(sf::Lines), 
     leftVertexArray(sf::Lines), 
     zoom(6), eyeDistance(0.1), 
-    eyeTarget(6), 
+    eyeTarget(7), 
     rotationDentisy(100), 
     rotationResistance(0.99), 
     translationMatrix(IdentityMatrix()), 
     rotationMatrix(IdentityMatrix()), 
-    mainMatrix(IdentityMatrix())
+    mainMatrix(IdentityMatrix()),
+    multipliers()
 { 
     window.setActive(); 
     int x = sf::VideoMode::getDesktopMode().width;
@@ -209,6 +210,13 @@ void ViewWindow::SaveToFile(const std::string& fileName, const unsigned int widt
     sf::Image image = renderTexture.getTexture().copyToImage();
     image.flipVertically();
     image.saveToFile(fileName);
+}
+
+void ViewWindow::setColors(int r1, int g1, int b1, int r2, int g2, int b2)
+{
+    multipliers.setColors(sf::Color(r1, g1, b1), sf::Color(r2, g2, b2));
+
+    Render();
 }
 
 void ViewWindow::RenderTo(sf::RenderTarget& target, sf::RenderStates state) const

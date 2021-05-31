@@ -156,7 +156,43 @@ void GUIMyFrame1::distance_eye_sliderOnScroll(wxScrollEvent& event)
 {
     if (viewWindow)
     {
-        viewWindow->setEyeDistance(0.1 + (distance_eye_slider->GetValue() - 50.) / 1000.);
+        viewWindow->setEyeDistance(0.1 + (distance_eye_slider->GetValue() - 50.) / 500.);
+    }
+}
+
+void GUIMyFrame1::kolor1OnColourChanged(wxColourPickerEvent& event)
+{
+    wxColour c1 = color_left_colourPicker->GetColour();
+    wxColour c2 = color_right_colourPicker->GetColour();
+    if (viewWindow)
+    {
+        viewWindow->setColors(c1.Red(), c1.Green(), c1.Blue(), c2.Red(), c2.Green(), c2.Blue());
+    }
+}
+
+void GUIMyFrame1::kolor2OnColourChanged(wxColourPickerEvent& event)
+{
+    wxColour c1 = color_left_colourPicker->GetColour();
+    wxColour c2 = color_right_colourPicker->GetColour();
+    if (viewWindow)
+    {
+        viewWindow->setColors(c1.Red(), c1.Green(), c1.Blue(), c2.Red(), c2.Green(), c2.Blue());
+    }
+}
+
+void GUIMyFrame1::openViewWindowBtnOnButtonClick(wxCommandEvent& event)
+{
+    //TO DO
+
+    
+    openRenderWindow(viewWindow);
+
+    viewWindow->setData(data);
+    wxColour c1 = color_left_colourPicker->GetColour();
+    wxColour c2 = color_right_colourPicker->GetColour();
+    if (viewWindow)
+    {
+        viewWindow->setColors(c1.Red(), c1.Green(), c1.Blue(), c2.Red(), c2.Green(), c2.Blue());
     }
 }
 

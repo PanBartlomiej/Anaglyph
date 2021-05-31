@@ -90,3 +90,8 @@ void ParallerMultiplier::calculate()
     wait();
 }
 
+void ParallerMultiplier::setColors(const sf::Color& c1, const sf::Color& c2)
+{
+    leftColor = c1;
+    rightColor = c2;
+}

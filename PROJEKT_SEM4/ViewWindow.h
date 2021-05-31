@@ -36,6 +36,9 @@ class ViewWindow
         void Update(const Matrix4& wxTranslation, const Matrix4& wxRotation);
         
         void SaveToFile(const std::string& fileName, const unsigned int width = 1280, const unsigned int height = 1080) const;
+
+        void setColors(int r1, int g1, int b1, int r2, int g2, int b2);
+
         void UpdateEyeMatrixes();
 
         
