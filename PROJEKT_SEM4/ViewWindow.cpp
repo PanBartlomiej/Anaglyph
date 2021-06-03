@@ -12,7 +12,9 @@ ViewWindow::ViewWindow(const int width, const int height, const char* title)
     translationMatrix(IdentityMatrix()), 
     rotationMatrix(IdentityMatrix()), 
     mainMatrix(IdentityMatrix()),
-    multipliers()
+    multipliers(),
+    rotationSpeedX(0), 
+    rotationSpeedY(0)
 { 
     window.setActive(); 
     int x = sf::VideoMode::getDesktopMode().width;
@@ -151,6 +153,12 @@ void ViewWindow::setData(const std::vector<Section>& newData)
     multipliers.vertexArrayLeft = &leftVertexArray;
     multipliers.vertexArrayRight = &rightVertexArray;
     multipliers.sections = &newData;
+        
+    translationMatrix = IdentityMatrix(); 
+    rotationMatrix = IdentityMatrix(); 
+    mainMatrix = IdentityMatrix();
+    rotationSpeedX = 0;
+    rotationSpeedY = 0;
     
     UpdateEyeMatrixes();
     multipliers.asyncCalculate();
@@ -195,7 +203,7 @@ void ViewWindow::heartBeat()
     if (fabs(rotationSpeedY) < 0.01)
         rotationSpeedY = 0;
     
-    if (rotationSpeedX != 0 && rotationSpeedY != 0)    
+    if (rotationSpeedX != 0 || rotationSpeedY != 0)    
         Render();
 }
 

@@ -11,7 +11,7 @@ const Resolution resolutionList[] =
 
 GUIMyFrame1::GUIMyFrame1(wxWindow* parent) : MyFrame1(parent), viewWindow(NULL)
 {
-    //openRenderWindow(true);
+    openRenderWindow(true);
     MyFrame1::SetPosition(wxPoint(0, 0));
     for (auto r : resolutionList)
         ResolutionChoice->Append(r.toString());
