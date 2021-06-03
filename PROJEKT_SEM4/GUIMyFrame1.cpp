@@ -3,15 +3,19 @@
 #include <iostream>   
 #include <string>  
 
+const Resolution resolutionList[] =
+{
+    Resolution(800, 650), Resolution(640, 480), Resolution(720/2*3, 720), Resolution(1080/2*3, 1080), Resolution(2048/2*3, 2048), Resolution(4096/2*3, 4096), 
+    Resolution(720/9*16, 720), Resolution(1080/9*16, 1080), Resolution(2048/9*16, 2048), Resolution(4096/9*16, 4096)
+}; 
 
 GUIMyFrame1::GUIMyFrame1(wxWindow* parent) : MyFrame1(parent), viewWindow(NULL)
 {
-    openRenderWindow(true);
-    obrtot_x->SetLabel(_("Obr\u00F3t X:"));
-    m_staticText2->SetLabel(_("Obr\u00F3t Y:"));
-    m_staticText3->SetLabel(_("Obr\u00F3t Z:"));
-    m_staticText4->SetLabel(_("Focus:"));
+    //openRenderWindow(true);
     MyFrame1::SetPosition(wxPoint(0, 0));
+    for (auto r : resolutionList)
+        ResolutionChoice->Append(r.toString());
+    ResolutionChoice->SetSelection(0);
 }
 
 GUIMyFrame1::~GUIMyFrame1()
@@ -160,7 +164,7 @@ void GUIMyFrame1::distance_eye_sliderOnScroll(wxScrollEvent& event)
     }
 }
 
-void GUIMyFrame1::kolor1OnColourChanged(wxColourPickerEvent& event)
+void GUIMyFrame1::color_left_colourPickerOnColourChanged(wxColourPickerEvent& event)
 {
     wxColour c1 = color_left_colourPicker->GetColour();
     wxColour c2 = color_right_colourPicker->GetColour();
@@ -170,7 +174,7 @@ void GUIMyFrame1::kolor1OnColourChanged(wxColourPickerEvent& event)
     }
 }
 
-void GUIMyFrame1::kolor2OnColourChanged(wxColourPickerEvent& event)
+void GUIMyFrame1::color_right_colourPickerOnColourChanged(wxColourPickerEvent& event)
 {
     wxColour c1 = color_left_colourPicker->GetColour();
     wxColour c2 = color_right_colourPicker->GetColour();
@@ -209,4 +213,11 @@ void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
     fileName = saveDialog.GetPath();
     if (viewWindow)
         viewWindow->ViewWindow::SaveToFile(fileName, ResolutionWidthSpinCtrl->GetValue(), ResolutionHeightSpinCtrl->GetValue());
+}
+
+void GUIMyFrame1::ResolutionChoiceOnChoice( wxCommandEvent& event )
+{
+    const Resolution& r = resolutionList[ResolutionChoice->GetSelection()];
+    ResolutionWidthSpinCtrl->SetValue(r.width);
+    ResolutionHeightSpinCtrl->SetValue(r.height);
 }

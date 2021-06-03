@@ -9,6 +9,7 @@
 #include "structures.h"
 #include "SphereMaker.h"
 #include "SectionMaker.h"
+#include <cmath>
 
 class ViewWindow
 {

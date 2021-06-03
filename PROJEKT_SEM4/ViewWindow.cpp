@@ -8,7 +8,7 @@ ViewWindow::ViewWindow(const int width, const int height, const char* title)
     zoom(6), eyeDistance(0.1), 
     eyeTarget(7), 
     rotationDentisy(100), 
-    rotationResistance(0.99), 
+    rotationResistance(0.995), 
     translationMatrix(IdentityMatrix()), 
     rotationMatrix(IdentityMatrix()), 
     mainMatrix(IdentityMatrix()),
@@ -95,11 +95,11 @@ bool ViewWindow::mouseMoveEvent(sf::Event& event)
     {
         if (mouseButtonIsDown)
         {
-            rotationSpeedX += (event.mouseMove.x - mousePositionX) * 0.01;
-            rotationSpeedY += (event.mouseMove.y - mousePositionY) * 0.01;
+            rotationSpeedX = rotationSpeedX * 0.9 + (event.mouseMove.x - mousePositionX) * 0.1;
+            rotationSpeedY = rotationSpeedY * 0.9 + (event.mouseMove.y - mousePositionY) * 0.1;
 
-            rotationSpeedX = sign(rotationSpeedX) * std::min(5., abs(rotationSpeedX));
-            rotationSpeedY = sign(rotationSpeedY) * std::min(5., abs(rotationSpeedY));
+            //rotationSpeedX = sign(rotationSpeedX) * std::min(5., fabs(rotationSpeedX));
+            //rotationSpeedY = sign(rotationSpeedY) * std::min(5., fabs(rotationSpeedY));
         }
 
         mousePositionX = event.mouseMove.x;

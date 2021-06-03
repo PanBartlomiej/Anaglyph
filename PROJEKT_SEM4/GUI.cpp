@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct 26 2018)
+// C++ code generated with wxFormBuilder (version 3.9.0 Apr  7 2021)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -19,7 +19,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer2;
 	bSizer2 = new wxBoxSizer( wxVERTICAL );
 
-	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
+	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxPoint( -1,-1 ), wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
 	bSizer2->Add( m_textCtrl1, 1, wxALL|wxEXPAND, 5 );
 
 
@@ -56,7 +56,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	obrot_z_slider = new wxSlider( this, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
 	bSizer4->Add( obrot_z_slider, 0, wxALL|wxEXPAND, 5 );
 
-	m_staticText4 = new wxStaticText( this, wxID_ANY, wxT("Przybliż:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText4 = new wxStaticText( this, wxID_ANY, wxT("Focus:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText4->Wrap( -1 );
 	bSizer4->Add( m_staticText4, 0, wxALL, 5 );
 
@@ -70,16 +70,16 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	distance_eye_slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
 	bSizer4->Add( distance_eye_slider, 0, wxALL|wxEXPAND, 5 );
 
-	m_staticText13 = new wxStaticText( this, wxID_ANY, wxT("Kolor dla lewego oka:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText13->Wrap( -1 );
-	bSizer4->Add( m_staticText13, 0, wxALL, 5 );
+	m_staticText9 = new wxStaticText( this, wxID_ANY, wxT("Kolor dla lewego oka:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText9->Wrap( -1 );
+	bSizer4->Add( m_staticText9, 0, wxALL, 5 );
 
 	color_left_colourPicker = new wxColourPickerCtrl( this, wxID_ANY, wxColour( 0, 0, 255 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
 	bSizer4->Add( color_left_colourPicker, 0, wxALL|wxEXPAND, 5 );
 
-	m_staticText14 = new wxStaticText( this, wxID_ANY, wxT("Kolor dla prawego oka:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText14->Wrap( -1 );
-	bSizer4->Add( m_staticText14, 0, wxALL, 5 );
+	m_staticText10 = new wxStaticText( this, wxID_ANY, wxT("Kolor dla prawego oka:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText10->Wrap( -1 );
+	bSizer4->Add( m_staticText10, 0, wxALL, 5 );
 
 	color_right_colourPicker = new wxColourPickerCtrl( this, wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
 	bSizer4->Add( color_right_colourPicker, 0, wxALL|wxEXPAND, 5 );
@@ -88,9 +88,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText5->Wrap( -1 );
 	bSizer4->Add( m_staticText5, 0, wxALL, 5 );
 
-	wxString ResolutionChoiceChoices[] = { wxT("800x650") };
-	int ResolutionChoiceNChoices = sizeof( ResolutionChoiceChoices ) / sizeof( wxString );
-	ResolutionChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, ResolutionChoiceNChoices, ResolutionChoiceChoices, 0 );
+	wxArrayString ResolutionChoiceChoices;
+	ResolutionChoice = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, ResolutionChoiceChoices, 0 );
 	ResolutionChoice->SetSelection( 0 );
 	bSizer4->Add( ResolutionChoice, 0, wxALL|wxEXPAND, 5 );
 
@@ -98,7 +97,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText6->Wrap( -1 );
 	bSizer4->Add( m_staticText6, 0, wxALL, 5 );
 
-	ResolutionWidthSpinCtrl = new wxSpinCtrl( this, wxID_ANY, wxT("800"), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 4096, 0 );
+	ResolutionWidthSpinCtrl = new wxSpinCtrl( this, wxID_ANY, wxT("800"), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 4096, 796 );
 	bSizer4->Add( ResolutionWidthSpinCtrl, 0, wxALL, 5 );
 
 	m_staticText7 = new wxStaticText( this, wxID_ANY, wxT("Rozdzielczosc Y zapisu:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -113,6 +112,9 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 
 	bSizer3->Add( bSizer4, 1, wxEXPAND, 5 );
+
+	zapisz = new wxButton( this, wxID_ANY, wxT("zapisz"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer3->Add( zapisz, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 
 
 	bSizer1->Add( bSizer3, 0, wxEXPAND, 5 );
@@ -173,12 +175,13 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	distance_eye_slider->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
 	distance_eye_slider->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
 	distance_eye_slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
-	color_left_colourPicker->Connect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( MyFrame1::kolor1OnColourChanged ), NULL, this );
-	color_right_colourPicker->Connect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( MyFrame1::kolor2OnColourChanged ), NULL, this );
+	color_left_colourPicker->Connect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( MyFrame1::color_left_colourPickerOnColourChanged ), NULL, this );
+	color_right_colourPicker->Connect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( MyFrame1::color_right_colourPickerOnColourChanged ), NULL, this );
 	ResolutionChoice->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::ResolutionChoiceOnChoice ), NULL, this );
 	ResolutionWidthSpinCtrl->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MyFrame1::ResolutionWidthSpinCtrlOnSpinCtrl ), NULL, this );
 	ResolutionHeightSpinCtrl->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MyFrame1::ResolutionHeightSpinCtrlOnSpinCtrl ), NULL, this );
 	openViewWindowBtn->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::openViewWindowBtnOnButtonClick ), NULL, this );
+	zapisz->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::zapiszOnButtonClick ), NULL, this );
 	this->Connect( wxID_ANY, wxEVT_TIMER, wxTimerEventHandler( MyFrame1::sfmlTimerOnTimer ) );
 }
 
@@ -231,12 +234,13 @@ MyFrame1::~MyFrame1()
 	distance_eye_slider->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
 	distance_eye_slider->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
 	distance_eye_slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MyFrame1::distance_eye_sliderOnScroll ), NULL, this );
-	color_left_colourPicker->Disconnect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( MyFrame1::kolor1OnColourChanged ), NULL, this );
-	color_right_colourPicker->Disconnect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( MyFrame1::kolor2OnColourChanged ), NULL, this );
+	color_left_colourPicker->Disconnect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( MyFrame1::color_left_colourPickerOnColourChanged ), NULL, this );
+	color_right_colourPicker->Disconnect( wxEVT_COMMAND_COLOURPICKER_CHANGED, wxColourPickerEventHandler( MyFrame1::color_right_colourPickerOnColourChanged ), NULL, this );
 	ResolutionChoice->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MyFrame1::ResolutionChoiceOnChoice ), NULL, this );
 	ResolutionWidthSpinCtrl->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MyFrame1::ResolutionWidthSpinCtrlOnSpinCtrl ), NULL, this );
 	ResolutionHeightSpinCtrl->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MyFrame1::ResolutionHeightSpinCtrlOnSpinCtrl ), NULL, this );
 	openViewWindowBtn->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::openViewWindowBtnOnButtonClick ), NULL, this );
+	zapisz->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MyFrame1::zapiszOnButtonClick ), NULL, this );
 	this->Disconnect( wxID_ANY, wxEVT_TIMER, wxTimerEventHandler( MyFrame1::sfmlTimerOnTimer ) );
 
 }
