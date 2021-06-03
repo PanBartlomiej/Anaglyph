@@ -1,7 +1,7 @@
 #include "ViewWindow.h"
 
 ViewWindow::ViewWindow(const int width, const int height, const char* title) 
-    : window(sf::VideoMode(width, height), title), _width(width), _height(height), 
+    : window(sf::VideoMode(width, height), title, sf::Style::Resize | sf::Style::Titlebar), _width(width), _height(height), 
     mouseButtonIsDown(false), 
     rightVertexArray(sf::Lines), 
     leftVertexArray(sf::Lines), 

@@ -16,7 +16,8 @@ inline void makeSection(const Point pa, const Point pb, const double thickness, 
     double len = normal.ray();
     normal = normal / len;
     
-    Matrix4 rotations[count];
+    std::vector<Matrix4> rotations;
+    rotations.resize(count);
     Point ray;
     if (normal.x != 0)
         ray = Point(normal.y/normal.x, 1, 0);
