@@ -95,8 +95,8 @@ bool ViewWindow::mouseMoveEvent(sf::Event& event)
     {
         if (mouseButtonIsDown)
         {
-            rotationSpeedX = rotationSpeedX * 0.9 + (event.mouseMove.x - mousePositionX) * 0.1;
-            rotationSpeedY = rotationSpeedY * 0.9 + (event.mouseMove.y - mousePositionY) * 0.1;
+            rotationSpeedX = rotationSpeedX * 0.1 + (event.mouseMove.x - mousePositionX) * 0.9;
+            rotationSpeedY = rotationSpeedY * 0.1 + (event.mouseMove.y - mousePositionY) * 0.9;
 
             //rotationSpeedX = sign(rotationSpeedX) * std::min(5., fabs(rotationSpeedX));
             //rotationSpeedY = sign(rotationSpeedY) * std::min(5., fabs(rotationSpeedY));

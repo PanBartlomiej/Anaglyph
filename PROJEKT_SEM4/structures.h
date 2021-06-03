@@ -2,11 +2,18 @@
 
 #include <stdio.h>
 #include <cmath>
+#include "wec.h"
 
 struct Point 
 {
     double x, y, z;
     Point(const double nx = 0, const double ny = 0, const double nz = 0) : x(nx), y(ny), z(nz) {}
+    Point(const Vector4& v) : x(v.data[0]), y(v.data[1]), z(v.data[2]) {};
+    
+    operator Vector4() const
+    {
+        return Vector4(x, y, z);
+    }
     
     void print()const 
     { 
@@ -74,9 +81,7 @@ struct Point
 
 struct Section {
     Point begin, end;
-   // Color color; 
-    double thickness;
-    Section(Point nbegin, Point nend, double nthickness = 1) : begin(nbegin), end(nend), thickness(nthickness) {}
+    Section(Point nbegin, Point nend) : begin(nbegin), end(nend) {}
 };
 
 struct Sphere {

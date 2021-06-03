@@ -1,6 +1,11 @@
 #include "wec.h"
 #include <cmath>
 
+inline double sqr(const double x)
+{
+    return x*x;
+}
+
 Vector4::Vector4()
 {
     data[0] = 0.0; data[1] = 0.0; data[2] = 0.0; data[3] = 1.0;
@@ -36,7 +41,15 @@ double Vector4::GetZ()
     return data[2];
 }
 
-Vector4 Vector4::operator- (const Vector4& gVector)
+Vector4 Vector4::operator+ (const Vector4& gVector) const
+{
+    unsigned int i;
+    Vector4 Result;
+    for (i = 0; i < 4; i++) Result.data[i] = data[i] + gVector.data[i];
+    return Result;
+}
+
+Vector4 Vector4::operator- (const Vector4& gVector) const
 {
     unsigned int i;
     Vector4 Result;
@@ -44,11 +57,19 @@ Vector4 Vector4::operator- (const Vector4& gVector)
     return Result;
 }
 
-Vector4 operator* (const Vector4& gVector, double val)
+Vector4 Vector4::operator*(const double x) const
 {
     unsigned int i;
     Vector4 Result;
-    for (i = 0; i < 4; i++) Result.data[i] = gVector.data[i] * val;
+    for (i = 0; i < 4; i++) Result.data[i] = data[i] * x;
+    return Result;
+}
+
+Vector4 Vector4::operator/(const double x) const
+{
+    unsigned int i;
+    Vector4 Result;
+    for (i = 0; i < 4; i++) Result.data[i] = data[i] / x;
     return Result;
 }
 
@@ -115,6 +136,31 @@ Matrix4 CreateRotationMatrix(const double angle, const int axis)
     result.data[newZ][newZ] = c;     
     
     return result;
+}
+
+Matrix4 CreateRotationMatrixFromVector(const Vector4 vector)
+{
+  double angle = sqrt(vector.data[0]*vector.data[0]+vector.data[1]*vector.data[1]+vector.data[2]*vector.data[2]);
+  double c = cos(angle);
+  double s = sin(angle);
+  Vector4 u = vector/angle;
+
+  Matrix4 Result;
+  Result.data[3][3] = 0;
+  
+  Result.data[0][0] = c+sqr(u.data[0])*(1-c);
+  Result.data[0][1] = u.data[0]*u.data[1]*(1-c)-u.data[2]*s;
+  Result.data[0][2] = u.data[0]*u.data[2]*(1-c)+u.data[1]*s;
+
+  Result.data[1][0] = u.data[1]*u.data[0]*(1-c)+u.data[2]*s;
+  Result.data[1][1] = c+sqr(u.data[1])*(1-c);
+  Result.data[1][2] = u.data[1]*u.data[2]*(1-c)-u.data[0]*s;
+
+  Result.data[2][0] = u.data[2]*u.data[0]*(1-c)-u.data[1]*s;
+  Result.data[2][1] = u.data[2]*u.data[1]*(1-c)+u.data[0]*s;
+  Result.data[2][2] = c+sqr(u.data[2])*(1-c);
+  
+  return Result;
 }
 
 Matrix4 CreateMoveMatrix(const double x, const double y, const double z)

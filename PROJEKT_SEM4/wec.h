@@ -12,8 +12,10 @@ public:
     double GetX();
     double GetY();
     double GetZ();
-    Vector4 operator-(const Vector4&);
-    friend Vector4 operator*(const Vector4&, double);
+    Vector4 operator+(const Vector4&) const;
+    Vector4 operator-(const Vector4&) const;
+    Vector4 operator*(const double) const;
+    Vector4 operator/(const double) const;
 };
 
 class Matrix4
@@ -26,8 +28,8 @@ public:
     friend Vector4 operator*(const Matrix4, const Vector4);
 };
 
-
 Matrix4 CreateRotationMatrix(const double angle, const int axis);
 Matrix4 CreateMoveMatrix(const double x, const double y, const double z);
 Matrix4 CreateScaleMatrix(const double kx, const double ky, const double kz);
+Matrix4 CreateRotationMatrixFromVector(const Vector4 vector);
 Matrix4 IdentityMatrix();

@@ -66,7 +66,7 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
                     in >> x1 >> y1 >> z1 >> x2 >> y2 >> z2 >> grubosc;
 
                     info << x1 << " " << y1 << " " << z1 << " " << x2 << " " << y2 << " " << z2 << " " << grubosc << "\n";
-                    makeSection(Point(x1, y1, z1), Point(x2, y2, z2), grubosc, 16, data);
+                    makeSection(Point(x1, y1, z1), Point(x2, y2, z2), grubosc, 8, data);
                     //data.push_back(Section(Point(x1, y1, z1), Point(x2, y2, z2), grubosc));
                 }
                 else if (test == 2) {
