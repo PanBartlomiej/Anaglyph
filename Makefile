@@ -1,31 +1,34 @@
 bin:
 	mkdir bin
+	
+bin/Linux: bin
+	mkdir bin/Linux
 
-bin/GUI.o: bin
-	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/GUI.cpp" -o "bin/GUI.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 
+bin/Linux/GUI.o: bin/Linux
+	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/GUI.cpp" -o "bin/Linux/GUI.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 
 	
-bin/GUIMyFrame1.o: bin
-	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/GUIMyFrame1.cpp" -o "bin/GUIMyFrame1.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+bin/Linux/GUIMyFrame1.o: bin/Linux
+	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/GUIMyFrame1.cpp" -o "bin/Linux/GUIMyFrame1.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 
-bin/wec.o: bin
-	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/wec.cpp" -o "bin/wec.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
-# # 
-bin/ViewWindow.o: bin
-	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/ViewWindow.cpp" -o "bin/ViewWindow.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+bin/Linux/wec.o: bin/Linux
+	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/wec.cpp" -o "bin/Linux/wec.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+
+bin/Linux/ViewWindow.o: bin/Linux
+	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/ViewWindow.cpp" -o "bin/Linux/ViewWindow.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 	
-bin/MatrixParallelMultiplier.o: bin
-	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/MatrixParallelMultiplier.cpp" -o "bin/MatrixParallelMultiplier.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
-	
-bin/main: bin bin/wec.o bin/GUIMyFrame1.o bin/GUI.o bin/ViewWindow.o bin/MatrixParallelMultiplier.o
-	g++ -std=c++17 -O3 -lm "bin/wec.o" "bin/GUIMyFrame1.o" "bin/GUI.o" "bin/ViewWindow.o" "bin/MatrixParallelMultiplier.o" "PROJEKT_SEM4/main.cpp" -o "bin/main" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+bin/Linux/MatrixParallelMultiplier.o: bin/Linux
+	g++ -std=c++17 -c -O3 -lm "PROJEKT_SEM4/MatrixParallelMultiplier.cpp" -o "bin/Linux/MatrixParallelMultiplier.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+
+bin/Linux/main: bin/Linux bin/Linux/wec.o bin/Linux/GUIMyFrame1.o bin/Linux/GUI.o bin/Linux/ViewWindow.o bin/Linux/MatrixParallelMultiplier.o
+	g++ -std=c++17 -O3 -lm "bin/Linux/wec.o" "bin/Linux/GUIMyFrame1.o" "bin/Linux/GUI.o" "bin/Linux/ViewWindow.o" "bin/Linux/MatrixParallelMultiplier.o" "PROJEKT_SEM4/main.cpp" -o "bin/Linux/main" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 
 clear:
-	rm -rf bin
+	rm -rf bin/Linux
 	
-all: clear bin/main
+all: clear bin/Linux/main
 
 run: bin/main
-	./bin/main
+	./bin/Linux/main
 	
 install_packets:
 	sudo apt install make gcc g++ 
