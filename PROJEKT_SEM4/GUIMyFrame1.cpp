@@ -85,7 +85,7 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
         double test;
         double x1, y1, z1, x2, y2, z2;
         double grubosc;
-        std::ifstream in(WxOpenFileDialog.GetPath().ToAscii());
+        std::ifstream in(WxOpenFileDialog.GetPath().ToUTF8());
 
         if (in.is_open())
         {
@@ -233,15 +233,6 @@ void GUIMyFrame1::openViewWindowBtnOnButtonClick(wxCommandEvent& event)
     {
         viewWindow->setColors(c1.Red(), c1.Green(), c1.Blue(), c2.Red(), c2.Green(), c2.Blue());
     }
-}
-
-std::wstring str2wstr(const std::string& str)
-{
-    std::wstring out;
-    out.resize(str.size());
-    for (int i=0;i<str.size();i++)
-        out.at(i) = str.at(i);
-    return out;
 }
 
 void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
