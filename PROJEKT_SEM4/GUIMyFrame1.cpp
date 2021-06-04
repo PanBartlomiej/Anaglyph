@@ -85,6 +85,8 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
         double test;
         double x1, y1, z1, x2, y2, z2;
         double grubosc;
+        
+        char znak;
         std::ifstream in(WxOpenFileDialog.GetPath().ToUTF8());
 
         if (in.is_open())
@@ -110,6 +112,19 @@ void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
                         makeSphere(Point(x1, y1, z1), x2, 256, data);
                         info << "kula:\n" << x1 << " " << y1 << " " << z1 << " r=" << x2 << "\n";
 
+                    }
+                }
+
+                znak = 'a';
+                while (znak != '\n')
+                {
+                    if (!in.eof())
+                    {
+                        in.get(znak);
+                    }
+                    else
+                    {
+                        znak = '\n';
                     }
                 }
             }
