@@ -25,6 +25,7 @@ ParallerMultiplier::ParallerMultiplier(const unsigned int threadCount) : leftCol
         sf::Thread* tmp = new sf::Thread(SingleMultiplier(i, *this));
         tmp->launch();
         _threads.push_back(tmp);
+        doneStatus[i] = true;
     }
 }
 
@@ -76,12 +77,14 @@ bool ParallerMultiplier::Done() const
 
 void ParallerMultiplier::asyncCalculate()
 {
-    vertexArrayLeft->resize(2*sections->size());
-    vertexArrayRight->resize(2*sections->size());
-    for (unsigned int i = 0;i<_threadCount;i++)
-        doneStatus[i] = false;
-    calcID++;
-    wait();
+    if (sections && sections->size())
+    {
+        vertexArrayLeft->resize(2*sections->size());
+        vertexArrayRight->resize(2*sections->size());
+        for (unsigned int i = 0;i<_threadCount;i++)
+            doneStatus[i] = false;
+        calcID++;
+    }
 }
 
 void ParallerMultiplier::calculate()

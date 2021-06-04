@@ -16,8 +16,6 @@ inline void makeSection(const Point pa, const Point pb, const double thickness, 
     double len = normal.ray();
     normal = normal / len;
     
-    std::vector<Matrix4> rotations;
-    rotations.resize(count);
     Point ray;
     if (normal.x != 0)
         ray = Point(normal.y/normal.x, 1, 0);
@@ -28,20 +26,32 @@ inline void makeSection(const Point pa, const Point pb, const double thickness, 
     
     ray = ray * (thickness/ray.ray());
     
+    Vector4 rotationsRay[count];
+    
     for (int i=0;i<count;i++)
-        rotations[i] = CreateRotationMatrixFromVector(normal*2*(3.1415926535897932384626433832795028841971693993751058209749445923)*(i+1)/(count));
+        rotationsRay[i] = CreateRotationMatrixFromVector(normal*2*(3.1415926535897932384626433832795028841971693993751058209749445923)*(i+1)/(count))*(Vector4)ray;
     
     for (int i=0;i<count;i++)
         for (int j=0;j<count;j++)
         {
             {
-                Point a = pa + (pb-pa)*i/count + rotations[(i+j)%count]*ray;
-                Point b = pa + (pb-pa)*(i+1)/count + rotations[(i+j+1)%count]*ray;
+                Point a = pa + (pb-pa)*i/count + rotationsRay[(i+j)%count];
+                Point b = pa + (pb-pa)*(i+1)/count + rotationsRay[(i+j+1)%count];
                 out.push_back(Section(a, b));
             }
             {
-                Point a = pa + (pb-pa)*i/count - rotations[(i+j)%count]*ray;
-                Point b = pa + (pb-pa)*(i+1)/count - rotations[(i+j+1)%count]*ray;
+                Point a = pa + (pb-pa)*i/count - rotationsRay[(i+j)%count];
+                Point b = pa + (pb-pa)*(i+1)/count - rotationsRay[(i+j+1)%count];
+                out.push_back(Section(a, b));
+            }
+            {
+                Point a = pa + (pb-pa)*i/count + rotationsRay[(i+j)%count];
+                Point b = pa + (pb-pa)*(i+1)/count + rotationsRay[(i+j-1)%count];
+                out.push_back(Section(a, b));
+            }
+            {
+                Point a = pa + (pb-pa)*i/count - rotationsRay[(i+j)%count];
+                Point b = pa + (pb-pa)*(i+1)/count - rotationsRay[(i+j-1)%count];
                 out.push_back(Section(a, b));
             }
         }
@@ -49,13 +59,13 @@ inline void makeSection(const Point pa, const Point pb, const double thickness, 
     for (int i=0;i<count;i++)
     {
         {
-            Point a = pa + rotations[(i)%count]*ray;
-            Point b = pa + rotations[(i+1)%count]*ray;
+            Point a = pa + rotationsRay[(i)%count];
+            Point b = pa + rotationsRay[(i+1)%count];
             out.push_back(Section(a, b));
         }
         {
-            Point a = pb + rotations[(i)%count]*ray;
-            Point b = pb + rotations[(i+1)%count]*ray;
+            Point a = pb + rotationsRay[(i)%count];
+            Point b = pb + rotationsRay[(i+1)%count];
             out.push_back(Section(a, b));
         }
     }
