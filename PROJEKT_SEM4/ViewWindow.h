@@ -27,6 +27,7 @@ class ViewWindow
         bool mouseUpEvent(sf::Event& event);
         bool mouseMoveEvent(sf::Event& event);
         bool mouseScrollEvent(sf::Event& event);
+        bool keyEvent(sf::Event& event);
         
         void setData(const std::vector<Section>& newData);
 
@@ -62,6 +63,7 @@ class ViewWindow
         Point center;
         Matrix4 translationMatrix, rotationMatrix, mainMatrix;
         double rotationSpeedX, rotationSpeedY;
+        double offsetX, offsetY;
         
         
         void RenderTo(sf::RenderTarget& target, const bool windowProportion = false) const;

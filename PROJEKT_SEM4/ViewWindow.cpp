@@ -14,7 +14,9 @@ ViewWindow::ViewWindow(const int width, const int height, const char* title)
     mainMatrix(IdentityMatrix()),
     multipliers(),
     rotationSpeedX(0), 
-    rotationSpeedY(0)
+    rotationSpeedY(0),
+    offsetX(0), 
+    offsetY(0)
 { 
     window.setActive(); 
     int x = sf::VideoMode::getDesktopMode().width;
@@ -49,6 +51,7 @@ void ViewWindow::HandleEvents()
         mouseUpEvent(event);
         mouseMoveEvent(event);
         mouseScrollEvent(event);
+        keyEvent(event);
         //obsługa reszty komunikatów
     }
 }
@@ -80,6 +83,21 @@ bool ViewWindow::mouseUpEvent(sf::Event& event)
     {
         mouseButtonIsDown = false;
         return true;
+    }
+    return false;
+}
+
+bool ViewWindow::keyEvent(sf::Event& event)
+{
+    if (event.type == sf::Event::KeyPressed)
+    {
+        switch (event.key.code)
+        {
+            case sf::Keyboard::Up : offsetY += 0.05*zoom; break;
+            case sf::Keyboard::Down : offsetY -= 0.05*zoom; break;
+            case sf::Keyboard::Left : offsetX += 0.05*zoom; break;
+            case sf::Keyboard::Right : offsetX -= 0.05*zoom; break;
+        }
     }
     return false;
 }
@@ -156,6 +174,8 @@ void ViewWindow::setData(const std::vector<Section>& newData)
     mainMatrix = IdentityMatrix();
     rotationSpeedX = 0;
     rotationSpeedY = 0;
+    offsetX = 0;
+    offsetY = 0;
     
     UpdateEyeMatrixes();
     multipliers.asyncCalculate();
@@ -235,7 +255,7 @@ void ViewWindow::RenderTo(sf::RenderTarget& target, const bool windowProportion)
     auto size = windowProportion?window.getSize():target.getSize();
     double k = (double)size.x/size.y;
 
-    target.setView(sf::View(sf::FloatRect(-zoom/2*k, -zoom/2, zoom*k, zoom)));
+    target.setView(sf::View(sf::FloatRect(offsetX-zoom/2*k, offsetY-zoom/2, zoom*k, zoom)));
     
     auto state = sf::RenderStates::Default;
     state.blendMode = sf::BlendMode(sf::BlendMode::Factor::One, sf::BlendMode::Factor::One, sf::BlendMode::Equation::Add);
