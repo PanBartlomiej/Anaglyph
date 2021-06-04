@@ -1,7 +1,7 @@
 #pragma once
 #include <stdio.h>
 
-class Vector4
+struct Vector4
 {
 public:
     double data[4];
@@ -18,7 +18,7 @@ public:
     Vector4 operator/(const double) const;
 };
 
-class Matrix4
+struct Matrix4
 {
 public:
     double data[4][4];

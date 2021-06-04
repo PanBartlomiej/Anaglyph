@@ -55,7 +55,6 @@ class ViewWindow
         sf::RenderWindow window;
         sf::VertexArray rightVertexArray;
         sf::VertexArray leftVertexArray;
-        int _width, _height;
         bool mouseButtonIsDown;
         int mousePositionX, mousePositionY;
         ParallerMultiplier multipliers;
