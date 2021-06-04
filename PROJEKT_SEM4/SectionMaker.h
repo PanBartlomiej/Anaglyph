@@ -26,7 +26,9 @@ inline void makeSection(const Point pa, const Point pb, const double thickness, 
     
     ray = ray * (thickness/ray.ray());
     
-    Vector4 rotationsRay[count];
+    std::vector<Vector4> rotationsRay;
+
+    rotationsRay.resize(count);
     
     for (int i=0;i<count;i++)
         rotationsRay[i] = CreateRotationMatrixFromVector(normal*2*(3.1415926535897932384626433832795028841971693993751058209749445923)*(i+1)/(count))*(Vector4)ray;
