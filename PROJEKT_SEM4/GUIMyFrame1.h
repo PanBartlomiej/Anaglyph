@@ -32,6 +32,16 @@ struct Resolution
     int width, height;
 };
 
+struct FileExtension
+{
+    FileExtension(const std::string d = "", const std::string e = "") : describe(d), extension(e) {};
+    std::string get() const
+    {
+        return describe + "|*." + extension;
+    }
+    std::string describe, extension;
+};
+
 /** Implementing MyFrame1 */
 class GUIMyFrame1 : public MyFrame1
 {
@@ -50,6 +60,10 @@ protected:
 	void openViewWindowBtnOnButtonClick(wxCommandEvent& event);
 	void sfmlTimerOnTimer(wxTimerEvent& event);
     void ResolutionChoiceOnChoice( wxCommandEvent& event );
+    
+    void AssignWindowResolutionOnButtonClick( wxCommandEvent& event ); 
+	void FitProportionXBtnOnButtonClick( wxCommandEvent& event );
+    void FitProportionYBtnOnButtonClick( wxCommandEvent& event );
 
 	void closeRenderWindow();
 	void openRenderWindow(const bool restart, const int width = 800, const int height = 650, const char* title = "Render window");

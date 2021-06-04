@@ -207,14 +207,14 @@ void ViewWindow::heartBeat()
         Render();
 }
 
-void ViewWindow::SaveToFile(const std::string& fileName, const unsigned int width, const unsigned int height) const
+void ViewWindow::SaveToFile(const std::string& fileName, const unsigned int width, const unsigned int height, const bool windowProportion) const
 {
     sf::RenderTexture renderTexture;
     renderTexture.create(width, height);
 
     sf::RenderStates state = sf::RenderStates::Default;
     state.transform.scale(double(width) / window.getSize().x, double(height) / window.getSize().y);
-    RenderTo(renderTexture, state);
+    RenderTo(renderTexture, windowProportion);
     sf::Image image = renderTexture.getTexture().copyToImage();
     image.flipVertically();
     image.saveToFile(fileName);
@@ -227,16 +227,22 @@ void ViewWindow::setColors(int r1, int g1, int b1, int r2, int g2, int b2)
     Render();
 }
 
-void ViewWindow::RenderTo(sf::RenderTarget& target, sf::RenderStates state) const
+sf::Vector2u ViewWindow::getSize() const
+{
+    return window.getSize();
+}
+
+void ViewWindow::RenderTo(sf::RenderTarget& target, const bool windowProportion) const
 {
     target.clear(sf::Color::Black);
-    auto size = target.getSize();
+    auto size = windowProportion?window.getSize():target.getSize();
     double k = (double)size.x/size.y;
+
+    target.setView(sf::View(sf::FloatRect(-zoom/2*k, -zoom/2, zoom*k, zoom)));
     
-    target.setView(sf::View(sf::FloatRect(-zoom/2*k * *(state.transform.getMatrix()+0), -zoom/2 * *(state.transform.getMatrix() + 5), zoom*k *  *(state.transform.getMatrix() + 0), zoom * *(state.transform.getMatrix() + 5))));
-    
+    auto state = sf::RenderStates::Default;
     state.blendMode = sf::BlendMode(sf::BlendMode::Factor::One, sf::BlendMode::Factor::One, sf::BlendMode::Equation::Add);
-    
+
     target.draw(leftVertexArray, state);
     target.draw(rightVertexArray, state);
 }

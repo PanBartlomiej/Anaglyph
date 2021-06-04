@@ -9,6 +9,17 @@ const Resolution resolutionList[] =
     Resolution(720/9*16, 720), Resolution(1080/9*16, 1080), Resolution(2048/9*16, 2048), Resolution(4096/9*16, 4096)
 }; 
 
+const FileExtension fileExtensionList [] = {FileExtension("Plik png", "png"), FileExtension("Plik jpg", "jpg"), FileExtension("Plik jpeg", "jpeg"), FileExtension("Bitmapa", "bmp")};
+
+std::string getFileExtensionListAsStr(const FileExtension* begin, const FileExtension* end)
+{
+    std::string result;
+    for (auto e=begin;e<end;e++)
+        result += e->get() + "|";
+    result.pop_back();
+    return result;
+}
+
 GUIMyFrame1::GUIMyFrame1(wxWindow* parent) : MyFrame1(parent), viewWindow(NULL)
 {
     openRenderWindow(true);
@@ -40,9 +51,33 @@ void GUIMyFrame1::openRenderWindow(const bool restart, const int width, const in
         viewWindow = new ViewWindow(width, height, title);
 }
 
+void GUIMyFrame1::AssignWindowResolutionOnButtonClick( wxCommandEvent& event ) 
+{
+    if (!viewWindow)
+        return;
+    auto size = viewWindow->getSize();
+    ResolutionWidthSpinCtrl->SetValue(size.x);
+    ResolutionHeightSpinCtrl->SetValue(size.y);
+}
+
+void GUIMyFrame1::FitProportionXBtnOnButtonClick( wxCommandEvent& event )
+{
+    if (!viewWindow)
+        return;
+    auto size = viewWindow->getSize();
+    ResolutionWidthSpinCtrl->SetValue(ResolutionHeightSpinCtrl->GetValue()*((double)size.x/size.y));
+}
+
+void GUIMyFrame1::FitProportionYBtnOnButtonClick( wxCommandEvent& event )
+{
+    if (!viewWindow)
+        return;
+    auto size = viewWindow->getSize();
+    ResolutionHeightSpinCtrl->SetValue(ResolutionWidthSpinCtrl->GetValue()*((double)size.y/size.x));
+}
+
 void GUIMyFrame1::wczytajOnButtonClick(wxCommandEvent& event)
 {
-    // TODO: Implement wczytajOnButtonClick
     wxFileDialog WxOpenFileDialog(this, wxT("Choose a file"), wxT(""), wxT(""), wxT("Geometry file (*.txt)|*.txt"), wxFD_OPEN | wxFD_FILE_MUST_EXIST);
     wxString info = "";
     if (WxOpenFileDialog.ShowModal() == wxID_OK)
@@ -203,16 +238,19 @@ void GUIMyFrame1::openViewWindowBtnOnButtonClick(wxCommandEvent& event)
 
 void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
 {
-    std::string fileName;
-
-    wxFileDialog saveDialog(this, "", "", "", "PNG files (*.png)|*.png|JPG files (*.jpg)|*.jpg", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    wxFileDialog saveDialog(this, "", "", "", getFileExtensionListAsStr(std::begin(fileExtensionList), std::end(fileExtensionList)), wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
     if (saveDialog.ShowModal() == wxID_CANCEL) {
         return;
     }
-    fileName = saveDialog.GetPath();
+    std::string ext("." + fileExtensionList[saveDialog.GetFilterIndex()].extension);
+    std::string fileName(saveDialog.GetPath());
+    
+    if (fileName.rfind(ext) != fileName.size()-ext.size())
+        fileName += ext;
+    
     if (viewWindow)
-        viewWindow->ViewWindow::SaveToFile(fileName, ResolutionWidthSpinCtrl->GetValue(), ResolutionHeightSpinCtrl->GetValue());
+        viewWindow->ViewWindow::SaveToFile(fileName, ResolutionWidthSpinCtrl->GetValue(), ResolutionHeightSpinCtrl->GetValue(),  StretchToWindowProportionChk->IsChecked());
 }
 
 void GUIMyFrame1::ResolutionChoiceOnChoice( wxCommandEvent& event )
