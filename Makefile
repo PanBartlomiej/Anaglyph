@@ -26,5 +26,10 @@ all: clear bin/main
 
 run: bin/main
 	./bin/main
+	
+install_packets:
+	sudo apt install make gcc g++ 
+	sudo apt install libwxgtk3.0-dev || sudo apt install libwxgtk3.0-gtk3-dev
+	sudo apt install libsfml-dev libsfml-window2.5 libsfml-system2.5 libsfml-graphics2.5
 
-.PHONY: all clear run
+.PHONY: all clear run install_packets
