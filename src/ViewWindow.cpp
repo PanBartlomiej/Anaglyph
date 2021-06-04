@@ -7,7 +7,7 @@ ViewWindow::ViewWindow(const int width, const int height, const char* title)
     leftVertexArray(sf::Lines), 
     zoom(6), eyeDistance(0.1), 
     eyeTarget(7), 
-    rotationDentisy(100), 
+    rotationDensity(100), 
     rotationResistance(0.995), 
     translationMatrix(IdentityMatrix()), 
     rotationMatrix(IdentityMatrix()), 
@@ -209,7 +209,7 @@ void ViewWindow::setEyeDistance(double distance)
 
 void ViewWindow::heartBeat()
 {
-    rotationMatrix = CreateRotationMatrix(-rotationSpeedX/rotationDentisy, 1) * CreateRotationMatrix(rotationSpeedY/rotationDentisy, 0) * rotationMatrix;
+    rotationMatrix = CreateRotationMatrix(-rotationSpeedX/rotationDensity, 1) * CreateRotationMatrix(rotationSpeedY/rotationDensity, 0) * rotationMatrix;
     mainMatrix = translationMatrix * CreateMoveMatrix(center.x, center.y, center.z) * rotationMatrix * CreateMoveMatrix(-center.x, -center.y, -center.z);
  
     rotationSpeedX *= rotationResistance;

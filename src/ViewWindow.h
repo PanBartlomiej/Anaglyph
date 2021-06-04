@@ -46,7 +46,7 @@ class ViewWindow
         
         double zoom;
         double eyeDistance, eyeTarget;
-        double rotationDentisy, rotationResistance;
+        double rotationDensity, rotationResistance;
         
         void Render(); //wykonać po każdej zmianie zmiennych!
 
