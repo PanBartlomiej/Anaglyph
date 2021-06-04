@@ -57,7 +57,7 @@ protected:
 	void distance_eye_sliderOnScroll(wxScrollEvent& event);
 	void color_left_colourPickerOnColourChanged(wxColourPickerEvent& event);
 	void color_right_colourPickerOnColourChanged(wxColourPickerEvent& event);
-	void openViewWindowBtnOnButtonClick(wxCommandEvent& event);
+	
 	void sfmlTimerOnTimer(wxTimerEvent& event);
     void ResolutionChoiceOnChoice( wxCommandEvent& event );
     
@@ -67,12 +67,14 @@ protected:
 
 	void closeRenderWindow();
 	void openRenderWindow(const bool restart, const int width = 800, const int height = 650, const char* title = "Render window");
+
+private:
+	Matrix4 rotacja() const;
+
 public:
 	/** Constructor */
 	GUIMyFrame1(wxWindow* parent);
 	//// end generated class members
-
-	Matrix4 rotacja() const;
 
 	ViewWindow* viewWindow;
 

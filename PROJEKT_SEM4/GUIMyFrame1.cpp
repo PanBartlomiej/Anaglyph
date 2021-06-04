@@ -234,21 +234,6 @@ void GUIMyFrame1::color_right_colourPickerOnColourChanged(wxColourPickerEvent& e
     }
 }
 
-void GUIMyFrame1::openViewWindowBtnOnButtonClick(wxCommandEvent& event)
-{
-    //TO DO
-
-    
-    openRenderWindow(viewWindow);
-
-    viewWindow->setData(data);
-    wxColour c1 = color_left_colourPicker->GetColour();
-    wxColour c2 = color_right_colourPicker->GetColour();
-    if (viewWindow)
-    {
-        viewWindow->setColors(c1.Red(), c1.Green(), c1.Blue(), c2.Red(), c2.Green(), c2.Blue());
-    }
-}
 
 void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
 {
