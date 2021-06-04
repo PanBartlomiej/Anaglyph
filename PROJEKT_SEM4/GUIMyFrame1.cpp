@@ -235,6 +235,14 @@ void GUIMyFrame1::openViewWindowBtnOnButtonClick(wxCommandEvent& event)
     }
 }
 
+std::wstring str2wstr(const std::string& str)
+{
+    std::wstring out;
+    out.resize(str.size());
+    for (int i=0;i<str.size();i++)
+        out.at(i) = str.at(i);
+    return out;
+}
 
 void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
 {
@@ -244,7 +252,7 @@ void GUIMyFrame1::zapiszOnButtonClick(wxCommandEvent& event)
         return;
     }
     std::string ext("." + fileExtensionList[saveDialog.GetFilterIndex()].extension);
-    std::string fileName(saveDialog.GetPath());
+    std::string fileName(saveDialog.GetPath().ToUTF8());
     
     if (fileName.rfind(ext) != fileName.size()-ext.size())
         fileName += ext;
