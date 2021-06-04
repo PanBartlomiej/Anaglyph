@@ -110,7 +110,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	AssignWindowResolution = new wxButton( m_panel8, wxID_ANY, wxT("Wczytaj rozdzielczość okna"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer9->Add( AssignWindowResolution, 0, wxALL, 5 );
 
-	m_staticText6 = new wxStaticText( m_panel8, wxID_ANY, wxT("Rozdzielczosc X zapisu:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText6 = new wxStaticText( m_panel8, wxID_ANY, wxT("Rozdzielczość X zapisu:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText6->Wrap( -1 );
 	bSizer9->Add( m_staticText6, 0, wxALL, 5 );
 
@@ -126,7 +126,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	bSizer9->Add( bSizer71, 1, wxEXPAND, 5 );
 
-	m_staticText7 = new wxStaticText( m_panel8, wxID_ANY, wxT("Rozdzielczosc Y zapisu:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText7 = new wxStaticText( m_panel8, wxID_ANY, wxT("Rozdzielczość Y zapisu:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText7->Wrap( -1 );
 	bSizer9->Add( m_staticText7, 0, wxALL, 5 );
 
@@ -142,7 +142,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	bSizer9->Add( bSizer81, 1, wxEXPAND, 5 );
 
-	StretchToWindowProportionChk = new wxCheckBox( m_panel8, wxID_ANY, wxT("Roziągnij do proporcji okna"), wxDefaultPosition, wxDefaultSize, 0 );
+	StretchToWindowProportionChk = new wxCheckBox( m_panel8, wxID_ANY, wxT("Zdeformuj do proporcji okna"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer9->Add( StretchToWindowProportionChk, 0, wxALL, 5 );
 
 	zapisz = new wxButton( m_panel8, wxID_ANY, wxT("zapisz"), wxDefaultPosition, wxDefaultSize, 0 );
