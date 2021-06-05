@@ -19,8 +19,11 @@ bin/Linux/ViewWindow.o: bin/Linux
 bin/Linux/MatrixParallelMultiplier.o: bin/Linux
 	g++ -std=c++17 -c -O3 -lm "src/MatrixParallelMultiplier.cpp" -o "bin/Linux/MatrixParallelMultiplier.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 
-bin/Linux/main: bin/Linux bin/Linux/wec.o bin/Linux/GUIMyFrame1.o bin/Linux/GUI.o bin/Linux/ViewWindow.o bin/Linux/MatrixParallelMultiplier.o
-	g++ -std=c++17 -O3 -lm "bin/Linux/wec.o" "bin/Linux/GUIMyFrame1.o" "bin/Linux/GUI.o" "bin/Linux/ViewWindow.o" "bin/Linux/MatrixParallelMultiplier.o" "src/main.cpp" -o "bin/Linux/main" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+bin/Linux/StructureMakers.o:
+	g++ -std=c++17 -c -O3 -lm "src/StructureMakers.cpp" -o "bin/Linux/StructureMakers.o" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
+
+bin/Linux/main: bin/Linux bin/Linux/wec.o bin/Linux/GUIMyFrame1.o bin/Linux/GUI.o bin/Linux/ViewWindow.o bin/Linux/MatrixParallelMultiplier.o bin/Linux/StructureMakers.o
+	g++ -std=c++17 -O3 -lm "bin/Linux/wec.o" "bin/Linux/GUIMyFrame1.o" "bin/Linux/GUI.o" "bin/Linux/ViewWindow.o" "bin/Linux/MatrixParallelMultiplier.o" "bin/Linux/StructureMakers.o" "src/main.cpp" -o "bin/Linux/main" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system 	
 
 clear:
 	rm -rf bin/Linux

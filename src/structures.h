@@ -83,17 +83,3 @@ struct Section {
     Point begin, end;
     Section(Point nbegin, Point nend) : begin(nbegin), end(nend) {}
 };
-
-struct Sphere {
-    Sphere(Point c, double r): center(c), ray(r) {};
-    Sphere() : center(0, 0, 0), ray(1) {};
-    
-    Point center;
-    double ray;
-    void set(Point c, double r)
-    {
-        center = c;
-        ray = r;
-    }
-    
-};

@@ -1,14 +1,9 @@
 #pragma once
 
-#include <iostream>
-//TODO: remove
-
 #include <SFML/Graphics.hpp>
 #include "MatrixParallelMultiplier.h"
 #include "wec.h"
 #include "structures.h"
-#include "SphereMaker.h"
-#include "SectionMaker.h"
 #include <cmath>
 
 class ViewWindow

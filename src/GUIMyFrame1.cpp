@@ -2,14 +2,18 @@
 #include <fstream>
 #include <iostream>   
 #include <string>  
+#include "StructureMakers.h"
 
 const Resolution resolutionList[] =
 {
     Resolution(800, 650), Resolution(640, 480), Resolution(720/2*3, 720), Resolution(1080/2*3, 1080), Resolution(2048/2*3, 2048), Resolution(4096/2*3, 4096), 
-    Resolution(720/9*16, 720), Resolution(1080/9*16, 1080), Resolution(2048/9*16, 2048), Resolution(4096/9*16, 4096)
+    Resolution(720/9*16, 720), Resolution(1080/9*16, 1080), Resolution(2048/9*16, 2048), Resolution(4096/9*16, 4096), Resolution(64, 64), Resolution(128, 128), Resolution(256, 256), Resolution(512, 512), Resolution(1024, 1024), Resolution(2048, 2048), Resolution(4096, 4096)
 }; 
 
-const FileExtension fileExtensionList [] = {FileExtension("Plik png", "png"), FileExtension("Plik jpg", "jpg"), FileExtension("Plik jpeg", "jpeg"), FileExtension("Bitmapa", "bmp")};
+const FileExtension fileExtensionList [] = 
+{
+    FileExtension("Portable Network Graphics", "png"), FileExtension("Joint Photographic Experts Group (extension without \"e\")", "jpg"), FileExtension("Joint Photographic Experts Group", "jpeg"), FileExtension("Windows Bitmap", "bmp"), FileExtension("Targa", "tga")
+};
 
 std::string getFileExtensionListAsStr(const FileExtension* begin, const FileExtension* end)
 {
