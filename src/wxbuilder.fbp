@@ -202,7 +202,7 @@
                                                     <property name="style"></property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Kliknij, aby otworzyć okno dialogowe do otwarcia pliku</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -328,7 +328,7 @@
                                                     <property name="style">wxSL_HORIZONTAL</property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Obraca obiekt wokół osi X. &#x0A;Każda zmiana spowoduje cofnięcie przekształcenia naniesionego w oknie renderowania i dostosuje je do ustawień z tego menu.</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -455,7 +455,7 @@
                                                     <property name="style">wxSL_HORIZONTAL</property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Obraca obiekt wokół osi Y. &#x0A;Każda zmiana spowoduje cofnięcie przekształcenia naniesionego w oknie renderowania i dostosuje je do ustawień z tego menu.</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -582,7 +582,7 @@
                                                     <property name="style">wxSL_HORIZONTAL</property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Obraca obiekt wokół osi Z. &#x0A;Każda zmiana spowoduje cofnięcie przekształcenia naniesionego w oknie renderowania i dostosuje je do ustawień z tego menu.</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -772,7 +772,7 @@
                                                     <property name="style">wxSL_HORIZONTAL</property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Ustawia punkt przecięcia się osi optycznych kamer</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -899,7 +899,7 @@
                                                     <property name="style">wxSL_HORIZONTAL</property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Ustawia odległość między kamerami</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -1025,7 +1025,7 @@
                                                     <property name="style">wxCLRP_DEFAULT_STYLE</property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Kliknij, aby otworzyć okno dialogowe do zmiany koloru</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -1150,7 +1150,7 @@
                                                     <property name="style">wxCLRP_DEFAULT_STYLE</property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Kliknij, aby otworzyć okno dialogowe do zmiany koloru</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -1339,7 +1339,7 @@
                                                     <property name="style"></property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Wybierz jedną z predefiniowanych rozdzielczości, aby ustawić odpowiednie wartości w polach &quot;Rozdzielczość X&quot; i &quot;Rozdzielczość Y&quot;</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -1413,7 +1413,7 @@
                                                     <property name="style"></property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Skopiuj rozdzielczość okna do poniższych pól ustawień rozdzielczości</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -1549,7 +1549,7 @@
                                                             <property name="style">wxSP_ARROW_KEYS</property>
                                                             <property name="subclass">; ; forward_declare</property>
                                                             <property name="toolbar_pane">0</property>
-                                                            <property name="tooltip"></property>
+                                                            <property name="tooltip">Ustaw szerokość zapisywanego obrazu</property>
                                                             <property name="value">800</property>
                                                             <property name="window_extra_style"></property>
                                                             <property name="window_name"></property>
@@ -1620,7 +1620,7 @@
                                                             <property name="style"></property>
                                                             <property name="subclass">; ; forward_declare</property>
                                                             <property name="toolbar_pane">0</property>
-                                                            <property name="tooltip"></property>
+                                                            <property name="tooltip">Dostosuj szerokość tak, by obraz nie był zdeformowany</property>
                                                             <property name="validator_data_type"></property>
                                                             <property name="validator_style">wxFILTER_NONE</property>
                                                             <property name="validator_type">wxDefaultValidator</property>
@@ -1758,7 +1758,7 @@
                                                             <property name="style">wxSP_ARROW_KEYS</property>
                                                             <property name="subclass">; ; forward_declare</property>
                                                             <property name="toolbar_pane">0</property>
-                                                            <property name="tooltip"></property>
+                                                            <property name="tooltip">Ustaw wysokość zapisywanego obrazu</property>
                                                             <property name="value">650</property>
                                                             <property name="window_extra_style"></property>
                                                             <property name="window_name"></property>
@@ -1829,7 +1829,7 @@
                                                             <property name="style"></property>
                                                             <property name="subclass">; ; forward_declare</property>
                                                             <property name="toolbar_pane">0</property>
-                                                            <property name="tooltip"></property>
+                                                            <property name="tooltip">Dostosuj wysokość tak, by obraz nie był zdeformowany</property>
                                                             <property name="validator_data_type"></property>
                                                             <property name="validator_style">wxFILTER_NONE</property>
                                                             <property name="validator_type">wxDefaultValidator</property>
@@ -1896,7 +1896,7 @@
                                                     <property name="style"></property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Jeśli to zaznaczysz, wyrenderowany obraz będzie zawierał dokładnie to samo, co okno renderowania, jednak przeskalowane do powyżej wybranej rozdzielczości.&#x0A;Odznaczenie powoduje zapisanie obrazu bez deformacji, a rozciągnięty i przycięty (lub z dodanymi czarnymi pasami wokół).</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -1969,7 +1969,7 @@
                                                     <property name="style"></property>
                                                     <property name="subclass">; ; forward_declare</property>
                                                     <property name="toolbar_pane">0</property>
-                                                    <property name="tooltip"></property>
+                                                    <property name="tooltip">Kliknij, aby otworzyć okno dialogowe do zapisania pliku</property>
                                                     <property name="validator_data_type"></property>
                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                     <property name="validator_type">wxDefaultValidator</property>
@@ -2038,7 +2038,7 @@
                                 <property name="style">wxTE_MULTILINE|wxTE_READONLY</property>
                                 <property name="subclass">; ; forward_declare</property>
                                 <property name="toolbar_pane">0</property>
-                                <property name="tooltip"></property>
+                                <property name="tooltip">Konsola pokazujaca wierzchołki wczytanego obiektu. Tylko jako ciekawostka.</property>
                                 <property name="validator_data_type"></property>
                                 <property name="validator_style">wxFILTER_NONE</property>
                                 <property name="validator_type">wxDefaultValidator</property>

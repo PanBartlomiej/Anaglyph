@@ -27,6 +27,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer7 = new wxBoxSizer( wxVERTICAL );
 
 	wczytaj = new wxButton( m_panel6, wxID_ANY, wxT("Wczytaj Plik"), wxDefaultPosition, wxDefaultSize, 0 );
+	wczytaj->SetToolTip( wxT("Kliknij, aby otworzyć okno dialogowe do otwarcia pliku") );
+
 	bSizer7->Add( wczytaj, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 
 	obrtot_x = new wxStaticText( m_panel6, wxID_ANY, wxT("Obrót X:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -34,6 +36,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer7->Add( obrtot_x, 0, wxALL, 5 );
 
 	obrot_x_slider = new wxSlider( m_panel6, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	obrot_x_slider->SetToolTip( wxT("Obraca obiekt wokół osi X. \nKażda zmiana spowoduje cofnięcie przekształcenia naniesionego w oknie renderowania i dostosuje je do ustawień z tego menu.") );
+
 	bSizer7->Add( obrot_x_slider, 0, wxALL|wxEXPAND, 5 );
 
 	m_staticText2 = new wxStaticText( m_panel6, wxID_ANY, wxT("Obrót Y:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -41,6 +45,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer7->Add( m_staticText2, 0, wxALL, 5 );
 
 	obrot_y_slider = new wxSlider( m_panel6, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	obrot_y_slider->SetToolTip( wxT("Obraca obiekt wokół osi Y. \nKażda zmiana spowoduje cofnięcie przekształcenia naniesionego w oknie renderowania i dostosuje je do ustawień z tego menu.") );
+
 	bSizer7->Add( obrot_y_slider, 0, wxALL|wxEXPAND, 5 );
 
 	m_staticText3 = new wxStaticText( m_panel6, wxID_ANY, wxT("Obrót Z:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -48,6 +54,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer7->Add( m_staticText3, 0, wxALL, 5 );
 
 	obrot_z_slider = new wxSlider( m_panel6, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	obrot_z_slider->SetToolTip( wxT("Obraca obiekt wokół osi Z. \nKażda zmiana spowoduje cofnięcie przekształcenia naniesionego w oknie renderowania i dostosuje je do ustawień z tego menu.") );
+
 	bSizer7->Add( obrot_z_slider, 0, wxALL|wxEXPAND, 5 );
 
 
@@ -65,6 +73,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer8->Add( m_staticText4, 0, wxALL, 5 );
 
 	focus_slider = new wxSlider( m_panel7, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	focus_slider->SetToolTip( wxT("Ustawia punkt przecięcia się osi optycznych kamer") );
+
 	bSizer8->Add( focus_slider, 0, wxALL|wxEXPAND, 5 );
 
 	m_staticText8 = new wxStaticText( m_panel7, wxID_ANY, wxT("Rozstaw oczu:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -72,6 +82,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer8->Add( m_staticText8, 0, wxALL, 5 );
 
 	distance_eye_slider = new wxSlider( m_panel7, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxSize( 100,-1 ), wxSL_HORIZONTAL );
+	distance_eye_slider->SetToolTip( wxT("Ustawia odległość między kamerami") );
+
 	bSizer8->Add( distance_eye_slider, 0, wxALL|wxEXPAND, 5 );
 
 	m_staticText9 = new wxStaticText( m_panel7, wxID_ANY, wxT("Kolor dla lewego oka:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -79,6 +91,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer8->Add( m_staticText9, 0, wxALL, 5 );
 
 	color_right_colourPicker = new wxColourPickerCtrl( m_panel7, wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	color_right_colourPicker->SetToolTip( wxT("Kliknij, aby otworzyć okno dialogowe do zmiany koloru") );
+
 	bSizer8->Add( color_right_colourPicker, 0, wxALL|wxEXPAND, 5 );
 
 	m_staticText10 = new wxStaticText( m_panel7, wxID_ANY, wxT("Kolor dla prawego oka:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -86,6 +100,8 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer8->Add( m_staticText10, 0, wxALL, 5 );
 
 	color_left_colourPicker = new wxColourPickerCtrl( m_panel7, wxID_ANY, wxColour( 0, 0, 255 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	color_left_colourPicker->SetToolTip( wxT("Kliknij, aby otworzyć okno dialogowe do zmiany koloru") );
+
 	bSizer8->Add( color_left_colourPicker, 0, wxALL|wxEXPAND, 5 );
 
 
@@ -105,9 +121,13 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxArrayString ResolutionChoiceChoices;
 	ResolutionChoice = new wxChoice( m_panel8, wxID_ANY, wxDefaultPosition, wxDefaultSize, ResolutionChoiceChoices, 0 );
 	ResolutionChoice->SetSelection( 0 );
+	ResolutionChoice->SetToolTip( wxT("Wybierz jedną z predefiniowanych rozdzielczości, aby ustawić odpowiednie wartości w polach \"Rozdzielczość X\" i \"Rozdzielczość Y\"") );
+
 	bSizer9->Add( ResolutionChoice, 0, wxALL|wxEXPAND, 5 );
 
 	AssignWindowResolution = new wxButton( m_panel8, wxID_ANY, wxT("Wczytaj rozdzielczość okna"), wxDefaultPosition, wxDefaultSize, 0 );
+	AssignWindowResolution->SetToolTip( wxT("Skopiuj rozdzielczość okna do poniższych pól ustawień rozdzielczości") );
+
 	bSizer9->Add( AssignWindowResolution, 0, wxALL, 5 );
 
 	m_staticText6 = new wxStaticText( m_panel8, wxID_ANY, wxT("Rozdzielczość X zapisu:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -118,9 +138,13 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer71 = new wxBoxSizer( wxVERTICAL );
 
 	ResolutionWidthSpinCtrl = new wxSpinCtrl( m_panel8, wxID_ANY, wxT("800"), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 16384, 796 );
+	ResolutionWidthSpinCtrl->SetToolTip( wxT("Ustaw szerokość zapisywanego obrazu") );
+
 	bSizer71->Add( ResolutionWidthSpinCtrl, 0, wxALL, 5 );
 
 	FitProportionXBtn = new wxButton( m_panel8, wxID_ANY, wxT("Dostosuj proporcję"), wxDefaultPosition, wxDefaultSize, 0 );
+	FitProportionXBtn->SetToolTip( wxT("Dostosuj szerokość tak, by obraz nie był zdeformowany") );
+
 	bSizer71->Add( FitProportionXBtn, 0, wxALL, 5 );
 
 
@@ -134,18 +158,26 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer81 = new wxBoxSizer( wxVERTICAL );
 
 	ResolutionHeightSpinCtrl = new wxSpinCtrl( m_panel8, wxID_ANY, wxT("650"), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 16384, 0 );
+	ResolutionHeightSpinCtrl->SetToolTip( wxT("Ustaw wysokość zapisywanego obrazu") );
+
 	bSizer81->Add( ResolutionHeightSpinCtrl, 0, wxALL, 5 );
 
 	FitProportionYBtn = new wxButton( m_panel8, wxID_ANY, wxT("Dostosuj proporcję"), wxDefaultPosition, wxDefaultSize, 0 );
+	FitProportionYBtn->SetToolTip( wxT("Dostosuj wysokość tak, by obraz nie był zdeformowany") );
+
 	bSizer81->Add( FitProportionYBtn, 0, wxALL, 5 );
 
 
 	bSizer9->Add( bSizer81, 1, wxEXPAND, 5 );
 
 	StretchToWindowProportionChk = new wxCheckBox( m_panel8, wxID_ANY, wxT("Zdeformuj do proporcji okna"), wxDefaultPosition, wxDefaultSize, 0 );
+	StretchToWindowProportionChk->SetToolTip( wxT("Jeśli to zaznaczysz, wyrenderowany obraz będzie zawierał dokładnie to samo, co okno renderowania, jednak przeskalowane do powyżej wybranej rozdzielczości.\nOdznaczenie powoduje zapisanie obrazu bez deformacji, a rozciągnięty i przycięty (lub z dodanymi czarnymi pasami wokół).") );
+
 	bSizer9->Add( StretchToWindowProportionChk, 0, wxALL, 5 );
 
 	zapisz = new wxButton( m_panel8, wxID_ANY, wxT("zapisz"), wxDefaultPosition, wxDefaultSize, 0 );
+	zapisz->SetToolTip( wxT("Kliknij, aby otworzyć okno dialogowe do zapisania pliku") );
+
 	bSizer9->Add( zapisz, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 
 
@@ -158,6 +190,7 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer2->Add( bSizer10, 1, wxEXPAND, 5 );
 
 	m_textCtrl1 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxPoint( -1,-1 ), wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY );
+	m_textCtrl1->SetToolTip( wxT("Konsola pokazujaca wierzchołki wczytanego obiektu. Tylko jako ciekawostka.") );
 	m_textCtrl1->SetMinSize( wxSize( -1,100 ) );
 
 	bSizer2->Add( m_textCtrl1, 0, wxALL|wxEXPAND, 5 );
