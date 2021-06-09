@@ -37,4 +37,6 @@ install_packets:
 	sudo apt update
 	sudo apt install make gcc g++ 
 	sudo apt install libwxgtk3.0-dev || sudo apt install libwxgtk3.0-gtk3-dev	
-	sudo apt install libsfml-dev libsfml-window2.5 libsfml-system2.5 libsfml-graphics2.5
+	sudo apt install libsfml-dev libsfml-window2.5 libsfml-system2.5 libsfml-graphics2.5	
+
+.PHONY: install_packets run all clear
