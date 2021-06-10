@@ -71,6 +71,10 @@ bool ViewWindow::mouseDownEvent(sf::Event& event)
 {
     if (event.type == sf::Event::MouseButtonPressed)
     {
+        rotationSpeedX = event.mouseButton.x - mousePositionX;
+        rotationSpeedY = event.mouseButton.y - mousePositionY;
+        mousePositionX = event.mouseButton.x;
+        mousePositionY = event.mouseButton.y;
         mouseButtonIsDown = true;
         return true;
     }
