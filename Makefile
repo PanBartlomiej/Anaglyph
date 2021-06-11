@@ -5,25 +5,25 @@ bin/Linux: bin
 	mkdir bin/Linux
 
 bin/Linux/GUI.o: bin/Linux
-	g++ -std=c++17 -c -O3 "src/GUI.cpp" -o "bin/Linux/GUI.o" `wx-config --cxxflags --libs` 
+	g++ -std=c++17 -c -O3 -Ofast -DNDEBUG "src/GUI.cpp" -o "bin/Linux/GUI.o" `wx-config --cxxflags --libs` 
 
 bin/Linux/GUIMyFrame1.o: bin/Linux
-	g++ -std=c++17 -c -O3 "src/GUIMyFrame1.cpp" -o "bin/Linux/GUIMyFrame1.o" `wx-config --cxxflags --libs` 
+	g++ -std=c++17 -c -O3 -Ofast -DNDEBUG "src/GUIMyFrame1.cpp" -o "bin/Linux/GUIMyFrame1.o" `wx-config --cxxflags --libs` 
 
 bin/Linux/wec.o: bin/Linux
-	g++ -std=c++17 -c -O3 "src/wec.cpp" -o "bin/Linux/wec.o" 
+	g++ -std=c++17 -c -O3 -Ofast -DNDEBUG "src/wec.cpp" -o "bin/Linux/wec.o" 
 
 bin/Linux/ViewWindow.o: bin/Linux
-	g++ -std=c++17 -c -O3 "src/ViewWindow.cpp" -o "bin/Linux/ViewWindow.o"
+	g++ -std=c++17 -c -O3 -Ofast -DNDEBUG "src/ViewWindow.cpp" -o "bin/Linux/ViewWindow.o"
 
 bin/Linux/MatrixParallelMultiplier.o: bin/Linux
-	g++ -std=c++17 -c -O3 "src/MatrixParallelMultiplier.cpp" -o "bin/Linux/MatrixParallelMultiplier.o"
+	g++ -std=c++17 -c -O3 -Ofast -DNDEBUG "src/MatrixParallelMultiplier.cpp" -o "bin/Linux/MatrixParallelMultiplier.o"
 
 bin/Linux/StructureMakers.o:
-	g++ -std=c++17 -c -O3 "src/StructureMakers.cpp" -o "bin/Linux/StructureMakers.o" 
+	g++ -std=c++17 -c -O3 -Ofast -DNDEBUG "src/StructureMakers.cpp" -o "bin/Linux/StructureMakers.o" 
 
 bin/Linux/main: bin/Linux bin/Linux/wec.o bin/Linux/GUIMyFrame1.o bin/Linux/GUI.o bin/Linux/ViewWindow.o bin/Linux/MatrixParallelMultiplier.o bin/Linux/StructureMakers.o
-	g++ -std=c++17 -O3 "bin/Linux/wec.o" "bin/Linux/GUIMyFrame1.o" "bin/Linux/GUI.o" "bin/Linux/ViewWindow.o" "bin/Linux/MatrixParallelMultiplier.o" "bin/Linux/StructureMakers.o" "src/main.cpp" -o "bin/Linux/main" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system -lm	
+	g++ -std=c++17 -O3 -Ofast -DNDEBUG "bin/Linux/wec.o" "bin/Linux/GUIMyFrame1.o" "bin/Linux/GUI.o" "bin/Linux/ViewWindow.o" "bin/Linux/MatrixParallelMultiplier.o" "bin/Linux/StructureMakers.o" "src/main.cpp" -o "bin/Linux/main" `wx-config --cxxflags --libs`  -lX11 -lsfml-graphics -lsfml-window -lsfml-system -lm	
 
 clear:
 	rm -rf bin/Linux
